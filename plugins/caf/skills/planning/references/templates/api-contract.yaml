@@ -1,0 +1,27 @@
+# OpenAPI Template for API Contracts
+
+# TODO: Add complete OpenAPI 3.0 template with examples
+
+# Example endpoint structure:
+#
+# /api/v1/resource:
+#   post:
+#     description: Creates a new resource
+#     requestBody:
+#       required: true
+#       content:
+#         application/json:
+#           schema:
+#             type: object
+#             properties:
+#               name:
+#                 type: string
+#             required:
+#               - name
+#     responses:
+#       '201':
+#         description: Resource created
+#       '400':
+#         description: Invalid request
+#       '422':
+#         description: Validation failed
