@@ -23,10 +23,11 @@ A structured, collaborative process for planning software development work — f
 
 ## When to use
 
-- **DO use** — for any feature, enhancement, or refactoring being added to the codebase
+- **DO use** — for any feature (use feature requirements stage), enhancement (use enhancement stage), or refactoring being added to the codebase
 - **DO use** — when the user asks to "plan", "spec out", "create", or "add" something
 - **DO use** — for both large and small features (scale the process to fit)
 - **DON'T use** — for bug fixes or trivial changes that can be done in 1-3 turns
+- **DON'T use feature requirements** — for improvements to an existing feature; use the enhancement stage instead
 
 ## Process overview
 
@@ -105,10 +106,13 @@ When you identify which stage the user needs, **read the corresponding stage doc
 | Stage | Read and follow | When |
 |---|---|---|
 | Create an app or feature requirements | `references/stages/product-requirements.md` | User wants to create an app, add a feature, write requirements |
+| Write enhancement requirements | `references/stages/enhancements.md` | User wants to add to or improve an existing feature |
 | Create ADRs | `references/stages/adrs.md` | Foundational decisions need documenting (technology, domain, schema) |
 | Create design spec | `references/stages/design-specs.md` | Feature has UI elements that need design work |
 | Write tech spec | `references/stages/tech-specs.md` | Translating requirements into technical architecture |
 | Decompose tasks | `references/stages/task-decomposition.md` | Tech spec complete, need to break work into tasks |
+
+**Feature vs. enhancement:** If the work adds to or improves something that already exists (changing behavior, adding a capability to a known feature), use the enhancement stage. If it's new standalone functionality, use feature requirements.
 
 **These stage documents contain imperative process instructions. Read and follow them step-by-step — they are not optional reference material.**
 
@@ -125,6 +129,7 @@ All artifacts are stored in `.eng-docs/`:
   specs/                     # Planning artifacts
     app.md                   # Application-level artifact (one per project)
     feature-*.md             # Feature-level artifacts (one per feature)
+    enhancement-*.md         # Enhancement-level artifacts (one per enhancement)
   wiki/                      # Technical documentation (source of truth)
     domain-model.md          # Core domain entities and relationships
     database-schema.md       # Database tables, columns, relationships
