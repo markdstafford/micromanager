@@ -337,7 +337,7 @@ Steps to Reproduce, Expected Behavior, Affected Files, Suggested Approach, Testi
 
 After creating each issue, confirm: "Issue #[number] created for [item]."
 
-Note: GitHub issues are created for all types — bugs, features, enhancements, and documentation alike.
+Note: GitHub issues are created for all types — bugs, features, enhancements, documentation, and questions alike.
 The issue is the tracking artifact. The CAF planning spec is the planning artifact.
 When a CAF spec is later created, it should reference the issue number, and the issue
 should link to the spec.
@@ -365,6 +365,6 @@ Want to start planning any of these now?
 - Feature → `caf:planning` to start the feature requirements stage
 - Enhancement → `caf:planning` to start the enhancement stage
 - Documentation → open the relevant file and proceed directly
-- Question → no "fix now" path; mark resolved or close the issue if answered
+- Question → no planning path; the issue stands as a tracking item
 
 **If no** — session complete.
