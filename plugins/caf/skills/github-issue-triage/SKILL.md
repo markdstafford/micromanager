@@ -7,10 +7,12 @@ description: >
   all unlabeled issues, enriches each one with code context, rewrites the title and body in detail,
   classifies by type and priority, gets human approval, then writes the result back to GitHub. Issues
   that are too vague get a "needs-info" comment tagging the reporter. After triaging, offers to fix
-  the issue immediately by writing a plan and creating a git worktree. Use this skill even if the user
-  only says "let's triage" or "can we go through the issues" — don't try to do this ad-hoc without the skill.
-  Also use when the user provides a list of feedback, notes, or observations about the app
-  and wants to process them into discrete tracked items.
+  the issue immediately by routing bugs to superpowers:writing-plans, features to caf:planning, and
+  enhancements to caf:planning.
+  Also use when the user provides a list of feedback, notes, screenshots, or observations about the
+  app — this skill will tease apart the items, classify them, create GitHub issues for each, and offer
+  to route into the appropriate planning workflow. Use this skill even if the user only says
+  "let's triage" or "can we go through the issues" — don't try to do this ad-hoc without the skill.
 ---
 
 # GitHub Issue Triage
@@ -18,6 +20,22 @@ description: >
 You are running a structured triage session. Work through unlabeled issues one at a time — enrich each
 with real code context, present a proposed triage for human approval, then write it back to GitHub.
 Nothing gets written to GitHub without explicit approval.
+
+## Mode detection
+
+At the start of every session, determine which mode applies:
+
+**Repo triage mode** — activate when the user says "triage", "triage issues", "let's go through
+the issues", or similar. Proceed to Phase 1 below.
+
+**Feedback intake mode** — activate when the user provides a list of notes, observations,
+bullets, or verbal feedback about the app (not a request to triage GitHub issues). Proceed to
+the Feedback Intake section below.
+
+**If ambiguous** — ask: "Do you want to triage existing GitHub issues in the repo, or process
+a list of feedback into tracked items?"
+
+---
 
 ## Phase 1: Setup
 
@@ -181,9 +199,12 @@ gh issue edit [number] \
 
 ### Step 8: Offer to fix it now
 
-After a successful write:
+After a successful write, prompt based on the type label:
 
-> "Issue #[number] is triaged. Want to fix it now, or move to the next issue?"
+- **Bug**: "Issue #[number] is triaged. Want to fix it now, or move to the next issue?"
+- **Feature or Enhancement**: "Issue #[number] is triaged. Want to start planning this now, or move to the next issue?"
+- **Documentation or Question**: "Issue #[number] is triaged. Moving to the next issue."
+  *(No fix-now path for these types — continue automatically.)*
 
 **Fix now — route based on type label:**
 
@@ -191,8 +212,10 @@ After a successful write:
   Then invoke `superpowers:using-git-worktrees` to create an isolated worktree.
 - **Feature (`feature-request`)** → Invoke `caf:planning` to start the feature requirements stage.
 - **Enhancement** → Invoke `caf:planning` to start the enhancement stage.
+- **Documentation** → Open the relevant documentation file and proceed directly.
+- **Question** → No "fix now" path; move to the next issue.
 
-**Later:** Continue to the next untriaged issue.
+**Later (Bug/Feature/Enhancement):** Continue to the next untriaged issue.
 
 ---
 
@@ -241,3 +264,107 @@ Fixing now:   [list issue numbers, or "none"]
 ## Reference files
 
 - `references/labels.md` — full label taxonomy with hex colors and descriptions for `gh label create`
+
+---
+
+## Feedback Intake Mode
+
+Use this mode when the user provides free-form feedback — bullet lists, verbal notes,
+screenshots, or any mix of observations about the app.
+
+### Step 1: Accept the input
+
+Receive the feedback. It may arrive as:
+- Pasted bullet points
+- A verbal description in the conversation
+- A mix of screenshots and notes
+- A single GitHub issue that contains multiple conflated items
+
+If the input is a GitHub issue body, treat it the same as free-form text — the goal is
+to tease apart what's inside it.
+
+### Step 2: Tease apart the items
+
+Read through the input and identify each distinct item. A single bullet or sentence may
+contain multiple items (e.g., "the sidebar is slow and the icons are wrong" = two items).
+
+Present the items as a numbered list:
+
+```
+Here's what I found in your feedback — [N] distinct items:
+
+1. [Item description — one sentence, specific]
+2. [Item description]
+...
+
+Does this look right? Anything to merge, split, or add?
+```
+
+Wait for the human to confirm, adjust, or expand the list before proceeding.
+
+### Step 3: Classify each item
+
+For each confirmed item, assign:
+- **Type**: bug / feature-request / enhancement / documentation / question
+- **Priority**: P0 / P1 / P2 / P3 (use the same criteria as repo triage mode)
+- **One-line rationale** for the type classification
+
+Present all classifications at once:
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROPOSED CLASSIFICATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. [Item] → bug · P2: medium
+   The sidebar renders slowly on large repos — existing functionality that's broken.
+
+2. [Item] → enhancement · P3: low
+   Adding keyboard shortcut to existing action — improvement to what's already there.
+
+3. [Item] → feature-request · P2: medium
+   New capability with no existing equivalent.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Do these classifications look right?
+```
+
+Wait for approval. Incorporate any corrections before proceeding.
+
+### Step 4: Create GitHub issues
+
+For each approved item, create a GitHub issue using the same enriched format as repo triage
+mode (Steps 5-7 of Phase 3). Follow the same body template: Summary, Proposed Behavior or
+Steps to Reproduce, Expected Behavior, Affected Files, Suggested Approach, Testing Requirements.
+
+After creating each issue, confirm: "Issue #[number] created for [item]."
+
+Note: GitHub issues are created for all types — bugs, features, enhancements, and documentation alike.
+The issue is the tracking artifact. The CAF planning spec is the planning artifact.
+When a CAF spec is later created, it should reference the issue number, and the issue
+should link to the spec.
+
+### Step 5: Offer to start planning
+
+After all issues are created, present a summary and offer to start planning:
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTAKE COMPLETE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Created:   [N] issues
+  Bugs:          #[n], #[n]
+  Features:      #[n]
+  Enhancements:  #[n], #[n]
+  Documentation: #[n]
+  Questions:     #[n]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Want to start planning any of these now?
+```
+
+**If yes** — route based on type:
+- Bug → `superpowers:writing-plans`, then `superpowers:using-git-worktrees`
+- Feature → `caf:planning` to start the feature requirements stage
+- Enhancement → `caf:planning` to start the enhancement stage
+- Documentation → open the relevant file and proceed directly
+- Question → no "fix now" path; mark resolved or close the issue if answered
+
+**If no** — session complete.
