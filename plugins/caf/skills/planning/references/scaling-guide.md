@@ -108,7 +108,7 @@ The planning process is designed to scale from large applications to small bug f
 - Parent feature reference
 - What, Why (1 paragraph each)
 - User stories (3-6 stories)
-- Technical changes (delta only)
+- Tech spec / Technical changes (delta only)
 - Task list
 
 **Skip:**
@@ -117,6 +117,7 @@ The planning process is designed to scale from large applications to small bug f
 - Narratives (unless the interaction is genuinely novel)
 - Non-goals (unless scope is ambiguous)
 - Full architecture diagrams (reference parent's)
+- Related features (enhancement is scoped to a single parent feature; linking is handled by the Parent feature reference field)
 
 **Notes:**
 - Everything is framed as delta on the parent feature
@@ -210,10 +211,10 @@ The planning process is designed to scale from large applications to small bug f
 Use this decision tree:
 
 1. **Is this a new application?** → App
-2. **Is this user-facing functionality?**
+2. **Is this user-facing functionality or an improvement to an existing feature?**
    - **Improvement to something that already exists** → Enhancement
-   - **Major functionality with multiple aspects** → Large feature
-   - **Focused, single-purpose functionality** → Small feature
+   - **Major new functionality with multiple aspects** → Large feature
+   - **Focused, single-purpose new functionality** → Small feature
 3. **Is this changing code structure/architecture?**
    - **Significant architectural change** → Big refactor
    - **Focused code cleanup** → Small refactor

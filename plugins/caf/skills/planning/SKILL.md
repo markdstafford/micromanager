@@ -23,7 +23,7 @@ A structured, collaborative process for planning software development work — f
 
 ## When to use
 
-- **DO use** — for any feature, enhancement, or refactoring being added to the codebase
+- **DO use** — for any feature (use feature requirements stage), enhancement (use enhancement stage), or refactoring being added to the codebase
 - **DO use** — when the user asks to "plan", "spec out", "create", or "add" something
 - **DO use** — for both large and small features (scale the process to fit)
 - **DON'T use** — for bug fixes or trivial changes that can be done in 1-3 turns
