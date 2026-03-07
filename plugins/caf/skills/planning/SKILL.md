@@ -129,6 +129,7 @@ All artifacts are stored in `.eng-docs/`:
   specs/                     # Planning artifacts
     app.md                   # Application-level artifact (one per project)
     feature-*.md             # Feature-level artifacts (one per feature)
+    enhancement-*.md         # Enhancement-level artifacts (one per enhancement)
   wiki/                      # Technical documentation (source of truth)
     domain-model.md          # Core domain entities and relationships
     database-schema.md       # Database tables, columns, relationships
