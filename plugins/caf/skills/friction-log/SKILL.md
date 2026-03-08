@@ -88,12 +88,12 @@ Valid values: `untracked` (not yet in GitHub) or `triaged → #N` (linked to iss
 **Example:**
 
 ```markdown
-## Item 3: Search results appear before query finishes typing
+## Item 5: Planning skill doesn't write artifacts to disk as it goes
 
-**Trying to:** Find a document by partial filename
-**What happened:** Results flickered and reordered mid-keystroke, making it hard to track what I was looking at. Had to pause and wait for the list to settle before I could click.
+**Trying to:** Track the spec document in my IDE as we worked through it section by section
+**What happened:** Claude walked through each planning section in chat but wrote nothing to disk. I had to explicitly ask "can you write the doc to disk as you go?" mid-session — by that point I'd had no IDE view of the growing document and couldn't share it or verify it outside the conversation.
 **Severity:** 🟡 friction
-**Suggested fix:** Debounce the search input by ~300ms
+**Suggested fix:** Create the artifact file before the first section and write each approved section to disk immediately after checkpoint approval — not at session end.
 **Status:** untracked
 ```
 
