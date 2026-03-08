@@ -85,6 +85,18 @@ When the user says "done", "that's it", "end the log", "finish", "stop", "quit",
 
 Valid values: `untracked` (not yet in GitHub) or `triaged → #N` (linked to issue N). Always set to `untracked` when creating.
 
+**Example:**
+
+```markdown
+## Item 3: Search results appear before query finishes typing
+
+**Trying to:** Find a document by partial filename
+**What happened:** Results flickered and reordered mid-keystroke, making it hard to track what I was looking at. Had to pause and wait for the list to settle before I could click.
+**Severity:** 🟡 friction
+**Suggested fix:** Debounce the search input by ~300ms
+**Status:** untracked
+```
+
 **Severity definitions:**
 - 🔴 **blocker** — prevents completing the task; user would stop or switch tools
 - 🟡 **friction** — annoying or confusing, but completable with effort
@@ -112,3 +124,4 @@ reasonably infer the intent or severity, do so.
 - Create the file before saying anything to the user
 - Write each item to the file immediately after structuring it — never buffer
 - If the session ends unexpectedly, all structured items to that point are on disk
+- Follow `caf:writing-guidelines` when writing friction log items — clear, specific, jargon-free
