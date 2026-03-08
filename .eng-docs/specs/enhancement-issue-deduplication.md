@@ -30,11 +30,50 @@ By detecting duplicates at creation time and consolidating evidence onto the exi
 
 ### Affected files
 
-*(Populated during tech specs stage)*
+- `plugins/caf/skills/github-issue-triage/SKILL.md` — add dedup check in both repo triage mode and feedback intake mode
 
 ### Changes
 
-*(Added by tech specs stage)*
+**Where it applies:**
+
+- **Repo triage mode** — after Step 6 (human approves proposed triage), before Step 7 (write back to GitHub). The action when a match is found is to close the current issue as a duplicate of the match.
+- **Feedback intake mode** — before creating each issue in Step 4. The action when a match is found is to append evidence to the existing issue instead of creating a new one.
+
+**Dedup check (same in both modes):**
+
+1. Extract 3–5 key terms from the proposed issue title
+2. Search for matches:
+   ```bash
+   gh issue list --search "KEYWORDS" --state open --json number,title,labels \
+     --jq '.[] | "#\(.number): \(.title) [\(.labels | map(.name) | join(", "))]"'
+   ```
+3. Always report the result — either the matches found or "No duplicates found"
+4. If matches found, present them and ask: `Possible duplicate of #N: "[title]". Append evidence / close as duplicate / new issue? (append / close / new)`
+
+**If "append" (feedback intake mode):**
+
+Post a comment on the existing issue:
+```markdown
+## Additional observation
+
+[Summary of the new item]
+
+**Context:** [source — e.g. "friction log 2026-03-07, Item 3" or "feedback intake 2026-03-07"]
+**Severity/priority signal:** [if from friction log]
+```
+Skip issue creation.
+
+**If "close as duplicate" (repo triage mode):**
+
+Add a comment referencing the duplicate, then close the issue:
+```bash
+gh issue comment [number] --body "Closing as duplicate of #[match-number]."
+gh issue close [number] --reason "duplicate"
+```
+
+**If "new" or no match:**
+
+Proceed to issue creation / write-back as normal.
 
 ## Task list
 
