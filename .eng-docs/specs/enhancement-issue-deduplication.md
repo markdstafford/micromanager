@@ -77,4 +77,23 @@ Proceed to issue creation / write-back as normal.
 
 ## Task list
 
-*(Added by task decomposition stage)*
+- [ ] **Story: Add dedup check to github-issue-triage skill**
+  - [ ] **Task: Add dedup check to repo triage mode**
+    - **Description**: In Phase 3 of `plugins/caf/skills/github-issue-triage/SKILL.md`, add a new Step 6a between Step 6 (human approval) and Step 7 (write-back). The step extracts 3–5 key terms from the proposed title, runs `gh issue list --search`, always reports the result, and offers two paths when a match is found: close as duplicate (posts a comment, runs `gh issue close --reason "duplicate"`, skips Step 7) or proceed with triage as normal.
+    - **Acceptance criteria**:
+      - [ ] Step 6's "yes" path updated to say "run dedup check (Step 6a), then proceed to Step 7"
+      - [ ] Step 6a appears between Step 6 and Step 7 with the `gh issue list --search` command
+      - [ ] "No duplicates found" is always reported when there are no matches
+      - [ ] Match found → close / proceed options presented
+      - [ ] "close" path posts a comment and runs `gh issue close [number] --reason "duplicate"`, then moves to next issue
+      - [ ] Steps 7 and 8 are unchanged
+    - **Dependencies**: None
+  - [ ] **Task: Add dedup check to feedback intake mode**
+    - **Description**: In `## Feedback Intake Mode`, update Step 4 to run a dedup check before each `gh issue create`. Same `gh issue list --search` pattern. Always reports the result. Match found → append / new options: "append" posts a structured comment (Summary, Context source, Suggested approach) on the existing issue and skips creation; "new" proceeds to creation as normal.
+    - **Acceptance criteria**:
+      - [ ] Dedup check runs before each item's creation in Step 4
+      - [ ] "No duplicates found" is always reported when there are no matches
+      - [ ] "append" posts a comment with Summary, Context, and Suggested approach, then confirms "Evidence appended to #N" and skips creation
+      - [ ] "new" proceeds to issue creation as normal
+      - [ ] Original issue creation instructions are preserved, clearly separated under an "Issue creation" subheading
+    - **Dependencies**: None
