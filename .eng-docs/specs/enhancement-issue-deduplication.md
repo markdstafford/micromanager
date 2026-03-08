@@ -77,7 +77,7 @@ Proceed to issue creation / write-back as normal.
 
 ## Task list
 
-- [ ] **Story: Add dedup check to github-issue-triage skill**
+- [x] **Story: Add dedup check to github-issue-triage skill**
   - [x] **Task: Add dedup check to repo triage mode**
     - **Description**: In Phase 3 of `plugins/caf/skills/github-issue-triage/SKILL.md`, add a new Step 6a between Step 6 (human approval) and Step 7 (write-back). The step extracts 3–5 key terms from the proposed title, runs `gh issue list --search`, always reports the result, and offers two paths when a match is found: close as duplicate (posts a comment, runs `gh issue close --reason "duplicate"`, skips Step 7) or proceed with triage as normal.
     - **Acceptance criteria**:
@@ -88,7 +88,7 @@ Proceed to issue creation / write-back as normal.
       - [ ] "close" path posts a comment and runs `gh issue close [number] --reason "duplicate"`, then moves to next issue
       - [ ] Steps 7 and 8 are unchanged
     - **Dependencies**: None
-  - [ ] **Task: Add dedup check to feedback intake mode**
+  - [x] **Task: Add dedup check to feedback intake mode**
     - **Description**: In `## Feedback Intake Mode`, update Step 4 to run a dedup check before each `gh issue create`. Same `gh issue list --search` pattern. Always reports the result. Match found → append / new options: "append" posts a structured comment (Summary, Context source, Suggested approach) on the existing issue and skips creation; "new" proceeds to creation as normal.
     - **Acceptance criteria**:
       - [ ] Dedup check runs before each item's creation in Step 4

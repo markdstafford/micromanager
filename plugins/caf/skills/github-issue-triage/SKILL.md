@@ -403,11 +403,42 @@ Wait for approval. Incorporate any corrections before proceeding.
 
 ### Step 4: Create GitHub issues
 
-For each approved item, create a GitHub issue using the same enriched format as repo triage
-mode (Steps 5-7 of Phase 3). Follow the same body template: Summary, Proposed Behavior or
-Steps to Reproduce, Expected Behavior, Affected Files, Suggested Approach, Testing Requirements.
+For each approved item, run a dedup check before creating the issue.
 
-After creating each issue, confirm: "Issue #[number] created for [item]."
+**Dedup check:**
+
+Extract 3–5 meaningful nouns or verbs from the proposed issue title (skip stop words like "the", "is", "not"). Space-separate terms for a GitHub AND search — if the first search returns no results, retry with a subset of 2–3 terms. Search for existing issues:
+
+```bash
+gh issue list --search "KEYWORDS" --state open --json number,title,labels \
+  --jq '.[] | "#\(.number): \(.title) [\(.labels | map(.name) | join(", "))]"'
+```
+
+Replace `KEYWORDS` with the extracted terms. Always report the result:
+
+- *"No duplicates found."* → create the issue (see Issue creation below)
+- If matches found:
+  ```
+  Possible duplicate: #N "[title]" [labels]
+  Append evidence to #N, or create a new issue? (append / new)
+  ```
+  - **append** → post a comment on the existing issue:
+    ```bash
+    gh issue comment [match-number] --body "## Additional observation
+
+[Summary of the current item]
+
+**Context:** [source — e.g. \"friction log 2026-03-07, Item 3\" or \"feedback intake 2026-03-07\"]
+**Suggested approach:** [from current item's Suggested Approach section]"
+    ```
+    Confirm: *"Evidence appended to #[match-number]."* Skip issue creation.
+  - **new** → create the issue (see Issue creation below)
+
+**Issue creation:**
+
+Create a GitHub issue using the same enriched format as repo triage mode (Steps 5–7 of Phase 3). Follow the same body template: Summary, Proposed Behavior or Steps to Reproduce, Expected Behavior, Affected Files, Suggested Approach, Testing Requirements.
+
+After creating each issue, confirm: *"Issue #[number] created for [item]."*
 
 Note: GitHub issues are created for all types — bugs, features, enhancements, documentation, and questions alike.
 The issue is the tracking artifact. The CAF planning spec is the planning artifact.
