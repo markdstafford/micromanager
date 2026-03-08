@@ -307,7 +307,7 @@ of `## Item N:` headings and `**Status:**` fields), activate **Friction Log Mode
 2. Count items with `Status: untracked` vs `Status: triaged → #N`
 3. Report: *"Found N items, M already triaged. Processing X untracked items."*
 4. Skip any item where `Status` is `triaged → #N` — do not re-process it
-5. For each untracked item, proceed through Steps 2–4 as normal, with these additions:
+5. For each untracked item, skip Step 2 (items are already identified) and proceed through Steps 3–4 as normal, with these additions:
    - Use the item's **severity** as a prior for priority:
      🔴 → lean P1, 🟡 → lean P2, 🟢 → lean P3 (triage judgment still overrides)
    - The item's **"Trying to"** field provides the user intent context — use it when
@@ -317,11 +317,12 @@ of `## Item N:` headings and `**Status:**` fields), activate **Friction Log Mode
      ```bash
      # Read the file, replace "Status: untracked" for this item with "Status: triaged → #N"
      # Write back using --body-file pattern (or sed for local file edits)
-     sed -i '' "0,/Status: untracked/s/Status: untracked/Status: triaged → #$(gh issue view --json number -q .number)/\" \
+     sed -i '' "0,/Status: untracked/s/Status: untracked/Status: triaged → #$(gh issue view --json number -q .number)/" \
        path/to/friction-log.md
      ```
-     Note: replace `0,/pattern/` with the specific item's occurrence to avoid replacing
-     the wrong item's status. Read the file after each update to verify correctness.
+     Note: The `0,/pattern/s/` form replaces only the first matching `Status: untracked` line.
+     Process items in order — update the file immediately after each `gh issue create` call —
+     so you always target the correct item. Read the file after each update to verify.
 
 ### Step 2: Tease apart the items
 
