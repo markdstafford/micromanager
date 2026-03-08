@@ -31,7 +31,7 @@ git rev-parse --is-inside-work-tree 2>/dev/null
 
 **If in a git repo:** Determine the file path: `.eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS.md` using the current timestamp. Create `.eng-docs/.friction-logs/` if it doesn't exist. Create the file immediately with the stub header below — before saying anything to the user. Then tell the user: *"Creating friction log at `.eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS.md`."*
 
-**If not in a git repo:** Ask: *"Where should I create the friction log?"* Create the file at the specified location with the stub header below.
+**If not in a git repo:** Ask: *"Where should I create the friction log?"* Once the user provides a path, create the file immediately at that location with the stub header below — before any further response.
 
 Stub header to use:
 
