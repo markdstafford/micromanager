@@ -4,7 +4,7 @@ This document defines the core domain entities, their relationships, and busines
 
 **Last updated**: [Date]
 
-## Core Entities
+## Core entities
 
 ### [Entity Name]
 
@@ -39,7 +39,7 @@ This document defines the core domain entities, their relationships, and busines
 **Business rules**:
 - [List rules]
 
-## Entity Relationships Diagram
+## Entity relationships diagram
 
 ```mermaid
 erDiagram
@@ -50,7 +50,7 @@ erDiagram
 
 [Add Mermaid ER diagram showing relationships between entities]
 
-## Domain Concepts
+## Domain concepts
 
 ### [Concept Name]
 

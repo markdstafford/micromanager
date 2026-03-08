@@ -56,7 +56,7 @@ CREATE INDEX idx_table_created_at ON table_name(created_at DESC);
 
 [Follow same structure as above]
 
-## Schema Diagram
+## Schema diagram
 
 ```mermaid
 erDiagram
@@ -86,14 +86,14 @@ erDiagram
 
 ## Migrations
 
-### Migration History
+### Migration history
 
 | Version | Date | Description | Author |
 |---------|------|-------------|--------|
 | 001 | 2024-01-15 | Initial schema | [Name] |
 | 002 | 2024-02-20 | Add page types | [Name] |
 
-### Migration Guidelines
+### Migration guidelines
 
 When creating migrations:
 1. Always include both `up` and `down` migrations
@@ -102,7 +102,7 @@ When creating migrations:
 4. Document any required data backfill scripts
 5. Note any breaking changes for dependent services
 
-## Data Types Reference
+## Data types reference
 
 **Common types used**:
 - `uuid` - Primary keys and foreign keys
@@ -113,7 +113,7 @@ When creating migrations:
 - `boolean` - True/false flags
 - `integer` - Numeric values
 
-## Naming Conventions
+## Naming conventions
 
 - **Tables**: Plural lowercase with underscores (e.g., `workspace_members`)
 - **Columns**: Lowercase with underscores (e.g., `created_at`)
@@ -122,9 +122,9 @@ When creating migrations:
 - **Indexes**: `idx_[table]_[columns]` (e.g., `idx_pages_workspace_type`)
 - **Constraints**: `[table]_[column]_[type]` (e.g., `pages_type_check`)
 
-## Query Patterns
+## Query patterns
 
-### Common Queries
+### Common queries
 
 **Get all pages in a workspace**:
 ```sql

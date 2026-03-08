@@ -4,7 +4,7 @@ This document defines the UI design system including design tokens, components, 
 
 **Last updated**: [Date]
 
-## Design Tokens
+## Design tokens
 
 ### Colors
 
@@ -80,7 +80,7 @@ This document defines the UI design system including design tokens, components, 
 - `spacing-12`: 48px
 - `spacing-16`: 64px
 
-### Border Radius
+### Border radius
 
 - `rounded-sm`: 2px
 - `rounded`: 4px
@@ -200,11 +200,11 @@ This document defines the UI design system including design tokens, components, 
 - Font weight: `font-semibold`
 - Margin bottom: `spacing-4`
 
-### Dropdown Menu
+### Dropdown menu
 
 [Define dropdown patterns]
 
-### Toast Notification
+### Toast notification
 
 [Define toast notification patterns]
 
@@ -225,7 +225,7 @@ This document defines the UI design system including design tokens, components, 
 - Border bottom: 1px solid `gray-200`
 - Shadow: `shadow-sm`
 
-### Form Layout
+### Form layout
 
 **Form groups**:
 - Margin bottom: `spacing-6`
@@ -237,7 +237,7 @@ This document defines the UI design system including design tokens, components, 
 - Primary button + Secondary button (optional)
 - Spacing: `spacing-3` between buttons
 
-### Loading States
+### Loading states
 
 **Spinner**:
 - Size: 24px (default)
@@ -252,7 +252,7 @@ This document defines the UI design system including design tokens, components, 
 - Centered spinner
 - Optional message below
 
-### Empty States
+### Empty states
 
 **Layout**:
 - Centered content
@@ -261,7 +261,7 @@ This document defines the UI design system including design tokens, components, 
 - Description (`text-sm`, `gray-600`)
 - Call-to-action button
 
-### Error States
+### Error states
 
 **Inline error**:
 - Below input field
@@ -320,7 +320,7 @@ This document defines the UI design system including design tokens, components, 
 - Match icon visual weight to text weight
 - Provide text labels or aria-labels
 
-## Responsive Design
+## Responsive design
 
 **Mobile-first approach**:
 - Design for mobile (320px+) first
@@ -332,7 +332,7 @@ This document defines the UI design system including design tokens, components, 
 - Smaller text and padding on mobile
 - Touch-friendly tap targets (min 44x44px)
 
-## Dark Mode (if applicable)
+## Dark mode (if applicable)
 
 [Define dark mode color palette and patterns]
 

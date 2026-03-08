@@ -136,7 +136,7 @@ Content-Type: application/json
 
 [Similar structure for page endpoints]
 
-## Common Response Patterns
+## Common response patterns
 
 ### Pagination
 
@@ -173,7 +173,7 @@ List endpoints may support filtering:
 - `type` - Filter by type (comma-separated for multiple)
 - `created_after` - Filter by creation date (ISO8601)
 
-## Error Response Format
+## Error response format
 
 All errors follow this format:
 
@@ -187,7 +187,7 @@ All errors follow this format:
 }
 ```
 
-### Common Error Codes
+### Common error codes
 
 | Code | HTTP Status | Description |
 |------|-------------|-------------|
@@ -199,9 +199,9 @@ All errors follow this format:
 | `rate_limited` | 429 | Too many requests |
 | `internal_error` | 500 | Server error |
 
-## Validation Rules
+## Validation rules
 
-### Common Field Validations
+### Common field validations
 
 - **name fields**: 1-255 characters, no leading/trailing whitespace
 - **email fields**: Valid email format, max 255 characters
@@ -209,7 +209,7 @@ All errors follow this format:
 - **type fields**: Must match allowed enum values
 - **content fields**: Max size 10MB
 
-### Rate Limiting
+### Rate limiting
 
 - Anonymous requests: 10 requests/minute
 - Authenticated requests: 100 requests/minute
@@ -243,7 +243,7 @@ API version is specified in the URL path: `/api/v1/...`
 
 **Authentication**: Via query parameter `?token=<jwt>`
 
-### Message Format
+### Message format
 
 All messages use JSON:
 
@@ -254,7 +254,7 @@ All messages use JSON:
 }
 ```
 
-### Message Types
+### Message types
 
 [Document WebSocket message types if applicable]
 
