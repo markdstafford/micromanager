@@ -37,7 +37,7 @@ a list of feedback into tracked items?"
 
 ---
 
-## Phase 1: setup
+## Phase 1: Setup
 
 ### 1. Verify prerequisites
 ```bash
