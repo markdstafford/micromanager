@@ -191,9 +191,34 @@ LABELS:     [type label] · [priority label] · [meta labels if any]
 Approve this triage? (yes / no / edit)
 ```
 
-- **yes** → proceed to Step 7
-- **no** → drop this issue and move to the next
+- **yes** → run dedup check (Step 6a below), then proceed to Step 7
+- **no** → skip Step 6a; drop this issue and move to the next
 - **edit** → incorporate the user's feedback and re-present; don't write until approved
+
+### Step 6a: Check for duplicates
+
+Extract 3–5 meaningful nouns or verbs from the proposed title (skip stop words like "the", "is", "not"). Space-separate terms for a GitHub AND search — if the first search returns no results, retry with a subset of 2–3 terms. Search for existing labeled issues:
+
+```bash
+gh issue list --search "KEYWORDS" --state open --json number,title,labels \
+  --jq '[.[] | select(.number != CURRENT_NUMBER)] | .[] | "#\(.number): \(.title) [\(.labels | map(.name) | join(", "))]"'
+```
+
+Replace KEYWORDS with extracted terms and CURRENT_NUMBER with the number of the issue being triaged. Always report the result to the user:
+
+- *"No duplicates found."* → proceed to Step 7
+- If matches found, present them:
+  ```
+  Possible duplicate: #N "[title]" [labels]
+  Close as duplicate, or proceed with triage? (close / proceed)
+  ```
+  - **close** → post a comment referencing the duplicate, then close:
+    ```bash
+    gh issue comment [number] --body "Closing as duplicate of #[match-number]."
+    gh issue close [number] --reason "not planned"
+    ```
+    Move to the next issue. Do not proceed to Step 7.
+  - **proceed** → continue to Step 7 as normal
 
 ### Step 7: Write back to GitHub
 
@@ -378,11 +403,43 @@ Wait for approval. Incorporate any corrections before proceeding.
 
 ### Step 4: Create GitHub issues
 
-For each approved item, create a GitHub issue using the same enriched format as repo triage
-mode (Steps 5-7 of Phase 3). Follow the same body template: Summary, Proposed Behavior or
-Steps to Reproduce, Expected Behavior, Affected Files, Suggested Approach, Testing Requirements.
+For each approved item, run a dedup check before creating the issue.
 
-After creating each issue, confirm: "Issue #[number] created for [item]."
+**Dedup check:**
+
+Extract 3–5 meaningful nouns or verbs from the proposed issue title (skip stop words like "the", "is", "not"). Space-separate terms for a GitHub AND search — if the first search returns no results, retry with a subset of 2–3 terms. Search for existing issues:
+
+```bash
+gh issue list --search "KEYWORDS" --state open --json number,title,labels \
+  --jq '.[] | "#\(.number): \(.title) [\(.labels | map(.name) | join(", "))]"'
+```
+
+Replace `KEYWORDS` with the extracted terms. Always report the result:
+
+- *"No duplicates found."* → create the issue (see Issue creation below)
+- If matches found:
+  ```
+  Possible duplicate: #N "[title]" [labels]
+  Append evidence to #N, or create a new issue? (append / new)
+  ```
+  - **append** → post a comment on the existing issue:
+    ```bash
+    gh issue comment [match-number] --body "## Additional observation
+
+[Summary of the current item]
+
+**Context:** [source — e.g. \"friction log 2026-03-07, Item 3\" or \"feedback intake 2026-03-07\"]
+**Suggested approach:** [from current item's Suggested Approach section]"
+    ```
+    Confirm: *"Evidence appended to #[match-number]."* Skip issue creation.
+    If processing a friction log, update the item's `Status` field to `triaged → #[match-number]` using the same python3 approach from Friction Log Mode in Step 1.
+  - **new** → create the issue (see Issue creation below)
+
+**Issue creation:**
+
+Create a GitHub issue using the same enriched format as repo triage mode (Steps 5–7 of Phase 3). Follow the same body template: Summary, Proposed Behavior or Steps to Reproduce, Expected Behavior, Affected Files, Suggested Approach, Testing Requirements.
+
+After creating each issue, confirm: *"Issue #[number] created for [item]."*
 
 Note: GitHub issues are created for all types — bugs, features, enhancements, documentation, and questions alike.
 The issue is the tracking artifact. The CAF planning spec is the planning artifact.
