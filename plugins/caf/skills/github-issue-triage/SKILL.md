@@ -295,9 +295,40 @@ Receive the feedback. It may arrive as:
 - A verbal description in the conversation
 - A mix of screenshots and notes
 - A single GitHub issue that contains multiple conflated items
+- A friction log file path (e.g. `.eng-docs/.friction-logs/2026-03-07-143022-episteme.md`)
 
 If the input is a GitHub issue body, treat it the same as free-form text — the goal is
 to tease apart what's inside it.
+
+**If the input is a friction log file path or matches the friction log format** (presence
+of `## Item N:` headings and `**Status:**` fields), activate **Friction Log Mode**:
+
+1. Read the file
+2. Count items with `Status: untracked` vs `Status: triaged → #N`
+3. Report: *"Found N items, M already triaged. Processing X untracked items."*
+4. Skip any item where `Status` is `triaged → #N` — do not re-process it
+5. For each untracked item, skip Step 2 (items are already identified) and proceed through Steps 3–4 as normal, with these additions:
+   - Use the item's **severity** as a prior for priority:
+     🔴 → lean P1, 🟡 → lean P2, 🟢 → lean P3 (triage judgment still overrides)
+   - The item's **"Trying to"** field provides the user intent context — use it when
+     writing the GitHub issue Summary and Expected Behavior sections
+   - After writing the item to GitHub (Step 4), update the `Status` field in the
+     friction log file from `untracked` to `triaged → #N`:
+     ```bash
+     # Capture the issue number when creating the issue:
+     issue_number=$(gh issue create \
+       --title "..." --label "..." --body-file "$body_file" \
+       --json number -q .number)
+     rm "$body_file"
+     # Update the first untracked Status field in the friction log:
+     python3 -c "
+path='path/to/friction-log.md'
+content=open(path).read()
+content=content.replace('**Status:** untracked','**Status:** triaged → #${issue_number}',1)
+open(path,'w').write(content)
+"
+     ```
+     Note: Capture the issue number directly from `gh issue create --json number -q .number` — do not use `gh issue view`. The `replace(..., 1)` call updates only the first match. Process items in order and update the file immediately after each create so you always target the correct item. Read the file after each update to verify.
 
 ### Step 2: Tease apart the items
 

@@ -2,3 +2,5 @@
 node_modules/
 *.log
 .eng-docs/.superpowers-plans/
+.eng-docs/.friction-logs/
+docs/plans/
