@@ -10,8 +10,7 @@ description: >
 # Friction Log
 
 Guide the user through an interactive friction logging session. You are an active scribe —
-the user narrates their experience and you structure it into a durable artifact. Minimize
-friction in the logging process itself.
+the user narrates their experience and you structure it into a durable artifact.
 
 ## When to use
 
@@ -31,7 +30,7 @@ git rev-parse --is-inside-work-tree 2>/dev/null
 
 **If in a git repo:** Determine the file path: `.eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS.md` using the current timestamp. Create `.eng-docs/.friction-logs/` if it doesn't exist. Create the file immediately with the stub header below — before saying anything to the user. Then tell the user: *"Creating friction log at `.eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS.md`."*
 
-**If not in a git repo:** Ask: *"Where should I create the friction log?"* Once the user provides a path, create the file immediately at that location with the stub header below — before any further response.
+**If not in a git repo:** Ask: *"Where should I create the friction log? (Default: `./friction-log-YYYY-MM-DD-HHMMSS.md`)"* Once the user provides a path — or accepts the default — create the file immediately at that location with the stub header below — before any further response.
 
 Stub header to use:
 
@@ -40,6 +39,8 @@ Stub header to use:
 
 ---
 ```
+
+(The header displays human-readable time; the filename uses compact sortable form `HHMMSS`.)
 
 ### 2. Accept items
 
@@ -55,16 +56,18 @@ Keep the session flowing. The goal is low-friction logging.
 
 ### 3. End the session
 
-When the user says "done", "that's it", "end the log", "finish", or similar:
+When the user says "done", "that's it", "end the log", "finish", "stop", "quit", or similar:
 
 1. Suggest a short kebab-case session name based on the items logged
    (e.g. `episteme-triage-flow`, `onboarding-setup`, `docs-first-run`)
 2. Propose the rename: *"Rename to `YYYY-MM-DD-HHMMSS-<session-slug>.md`?"*
 3. On approval:
    ```bash
+   # Substitute the actual timestamp from step 1
    mv .eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS.md \
       .eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS-<session-slug>.md
    ```
+   (Substitute the actual timestamp used when the file was created in step 1.)
 4. Confirm: *"Saved to `.eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS-<session-slug>.md`."*
 
 ---
@@ -80,6 +83,8 @@ When the user says "done", "that's it", "end the log", "finish", or similar:
 **Suggested fix:** [optional — omit if none offered]
 **Status:** untracked
 ```
+
+Valid values: `untracked` (not yet in GitHub) or `triaged → #N` (linked to issue N). Always set to `untracked` when creating.
 
 **Severity definitions:**
 - 🔴 **blocker** — prevents completing the task; user would stop or switch tools
