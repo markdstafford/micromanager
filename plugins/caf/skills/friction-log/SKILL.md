@@ -29,14 +29,11 @@ Check if the current directory is inside a git repo:
 git rev-parse --is-inside-work-tree 2>/dev/null
 ```
 
-**If in a git repo:** Create `.eng-docs/.friction-logs/` if it doesn't exist, then create
-the file at `.eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS.md` using the current timestamp.
-Tell the user: *"Creating friction log at `.eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS.md`."*
+**If in a git repo:** Determine the file path: `.eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS.md` using the current timestamp. Create `.eng-docs/.friction-logs/` if it doesn't exist. Create the file immediately with the stub header below — before saying anything to the user. Then tell the user: *"Creating friction log at `.eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS.md`."*
 
-**If not in a git repo:** Ask: *"Where should I create the friction log?"* Create the file
-at the specified location.
+**If not in a git repo:** Ask: *"Where should I create the friction log?"* Create the file at the specified location with the stub header below.
 
-Create the file immediately with a stub header before saying anything else:
+Stub header to use:
 
 ```markdown
 # Friction Log — YYYY-MM-DD HH:MM
