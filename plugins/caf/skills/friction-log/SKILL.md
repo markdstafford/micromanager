@@ -1,10 +1,10 @@
 ---
 name: friction-log
 description: >
-  Use when the user wants to create a friction log, record product friction, log usability
-  issues, or document an experience testing a workflow. Triggered by phrases like "friction
-  log", "start a friction log", "I want to log some friction", "create a friction log", or
-  "log friction".
+  Use when the user wants to create a friction log or capture live usability feedback
+  during a testing or workflow session. Triggered by any mention of "friction" or
+  phrases like "log some friction", "capture feedback", or "document my experience".
+  Not for triaging existing feedback — use caf:github-issue-triage for that.
 ---
 
 # Friction Log
