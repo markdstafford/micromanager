@@ -1,0 +1,113 @@
+---
+name: friction-log
+description: >
+  Use when the user wants to create a friction log, record product friction, log usability
+  issues, or document an experience testing a workflow. Triggered by phrases like "friction
+  log", "start a friction log", "I want to log some friction", "create a friction log", or
+  "log friction".
+---
+
+# Friction Log
+
+Guide the user through an interactive friction logging session. You are an active scribe —
+the user narrates their experience and you structure it into a durable artifact. Minimize
+friction in the logging process itself.
+
+## When to use
+
+When a user is exercising a workflow and wants to capture pain points, confusion, and
+friction for later triage. Friction logs are created by one person and triaged separately,
+often by someone else.
+
+## Process
+
+### 1. Set up the file
+
+Check if the current directory is inside a git repo:
+
+```bash
+git rev-parse --is-inside-work-tree 2>/dev/null
+```
+
+**If in a git repo:** Create `.eng-docs/.friction-logs/` if it doesn't exist, then create
+the file at `.eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS.md` using the current timestamp.
+Tell the user: *"Creating friction log at `.eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS.md`."*
+
+**If not in a git repo:** Ask: *"Where should I create the friction log?"* Create the file
+at the specified location.
+
+Create the file immediately with a stub header before saying anything else:
+
+```markdown
+# Friction Log — YYYY-MM-DD HH:MM
+
+---
+```
+
+### 2. Accept items
+
+Tell the user: *"Ready. Describe whatever friction you're experiencing — I'll structure it as we go."*
+
+For each item the user raises:
+1. Structure it into the friction item format (see below)
+2. Ask clarifying questions if needed (see Clarifying questions)
+3. Write the structured item to the file immediately
+4. Confirm briefly (e.g. *"Got it, logged as Item 1."*) and wait for the next item
+
+Keep the session flowing. The goal is low-friction logging.
+
+### 3. End the session
+
+When the user says "done", "that's it", "end the log", "finish", or similar:
+
+1. Suggest a short kebab-case session name based on the items logged
+   (e.g. `episteme-triage-flow`, `onboarding-setup`, `docs-first-run`)
+2. Propose the rename: *"Rename to `YYYY-MM-DD-HHMMSS-<session-slug>.md`?"*
+3. On approval:
+   ```bash
+   mv .eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS.md \
+      .eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS-<session-slug>.md
+   ```
+4. Confirm: *"Saved to `.eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS-<session-slug>.md`."*
+
+---
+
+## Friction item format
+
+```markdown
+## Item N: [one-line description]
+
+**Trying to:** [what the logger was attempting — the goal, not the problem]
+**What happened:** [narrative of the experience]
+**Severity:** 🔴 blocker | 🟡 friction | 🟢 minor
+**Suggested fix:** [optional — omit if none offered]
+**Status:** untracked
+```
+
+**Severity definitions:**
+- 🔴 **blocker** — prevents completing the task; user would stop or switch tools
+- 🟡 **friction** — annoying or confusing, but completable with effort
+- 🟢 **minor** — small polish issue, unlikely to derail anyone
+
+---
+
+## Clarifying questions
+
+Ask when ambiguity would make an item less useful for downstream triage. If you can
+reasonably infer the intent or severity, do so.
+
+**Good reasons to ask:**
+- "Trying to" is completely unclear — what was the goal?
+- Severity is ambiguous between 🔴 and 🟡 — did this block them completely?
+
+**Don't ask:**
+- For a suggested fix — user will offer one if they have it
+- To confirm things already clearly stated
+
+---
+
+## Writing discipline
+
+- Create the file before saying anything to the user
+- Write each item to the file immediately after structuring it — never buffer
+- If the session ends unexpectedly, all structured items to that point are on disk
