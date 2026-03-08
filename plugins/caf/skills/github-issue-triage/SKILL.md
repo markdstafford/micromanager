@@ -191,9 +191,34 @@ LABELS:     [type label] · [priority label] · [meta labels if any]
 Approve this triage? (yes / no / edit)
 ```
 
-- **yes** → proceed to Step 7
+- **yes** → run dedup check (Step 6a below), then proceed to Step 7
 - **no** → drop this issue and move to the next
 - **edit** → incorporate the user's feedback and re-present; don't write until approved
+
+### Step 6a: Check for duplicates
+
+Extract 3–5 key terms from the proposed title and search for existing labeled issues:
+
+```bash
+gh issue list --search "KEYWORDS" --state open --json number,title,labels \
+  --jq '.[] | "#\(.number): \(.title) [\(.labels | map(.name) | join(", "))]"'
+```
+
+Replace `KEYWORDS` with the extracted terms. Always report the result to the user:
+
+- *"No duplicates found."* → proceed to Step 7
+- If matches found, present them:
+  ```
+  Possible duplicate: #N "[title]" [labels]
+  Close as duplicate, or proceed with triage? (close / proceed)
+  ```
+  - **close** → post a comment referencing the duplicate, then close:
+    ```bash
+    gh issue comment [number] --body "Closing as duplicate of #[match-number]."
+    gh issue close [number] --reason "duplicate"
+    ```
+    Move to the next issue. Do not proceed to Step 7.
+  - **proceed** → continue to Step 7 as normal
 
 ### Step 7: Write back to GitHub
 
