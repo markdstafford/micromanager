@@ -81,6 +81,18 @@ implementation. Use a branch name derived from the feature or issue (e.g.
 **Do not proceed to step 6 if still on main after this step.** If the worktree skill
 leaves the session on main, stop and investigate before continuing.
 
+After the worktree is created, move the spec file out of `backlog/` and update its status:
+
+```bash
+# Only if the spec is in backlog/ (created after this enhancement was implemented)
+spec=$(ls .eng-docs/specs/backlog/[feature-or-enhancement-filename] 2>/dev/null)
+if [ -n "$spec" ]; then
+  git mv "$spec" .eng-docs/specs/
+fi
+```
+
+Update the spec's frontmatter: set `status: implementing`, `implemented_by` to the current GitHub username (`gh api user -q .login`), and `last_updated` to today's date.
+
 ### 6. Implement with superpowers
 
 Invoke `superpowers:writing-plans` with the following context. These instructions take
@@ -124,3 +136,5 @@ context: this session is running inside a worktree. Present only these options:
 
 Do not offer merge locally. Do not delete the worktree when pushing — keep it intact
 until the PR merges.
+
+After the PR is created, update the spec's frontmatter: set `status: complete` and `last_updated` to today's date.
