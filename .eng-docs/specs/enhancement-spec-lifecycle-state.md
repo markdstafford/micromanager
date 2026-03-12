@@ -188,7 +188,7 @@ Add to the artifact structure section:
       - [ ] Frontmatter appears above the first heading in each file
     - **Dependencies**: None
 
-- [ ] **Story: Update stage docs — artifact creation**
+- [x] **Story: Update stage docs — artifact creation**
   - [x] **Task: Update `enhancements.md` — create spec in `backlog/` with frontmatter**
     - **Description**: In `references/stages/enhancements.md`, update step 1 (the file creation instruction) to: (1) use path `.eng-docs/specs/backlog/enhancement-[name].md` instead of `.eng-docs/specs/enhancement-[name].md`, and (2) instruct the skill to populate the frontmatter block when creating the file, setting `created` from today's date, `status: draft`, and `specced_by` from the current GitHub username.
     - **Acceptance criteria**:
@@ -196,14 +196,14 @@ Add to the artifact structure section:
       - [ ] Step 1 instructs populating `created`, `status: draft`, and `specced_by` at file creation
       - [ ] `last_updated` is set to the same value as `created` on file creation
     - **Dependencies**: Task: Add frontmatter to spec templates
-  - [ ] **Task: Update `product-requirements.md` — create spec in `backlog/` with frontmatter; set wiki docs to `active` on first substantive edit**
+  - [x] **Task: Update `product-requirements.md` — create spec in `backlog/` with frontmatter; set wiki docs to `active` on first substantive edit**
     - **Description**: In `references/stages/product-requirements.md`, update the feature spec creation step to use `.eng-docs/specs/backlog/feature-[name].md` and populate frontmatter on creation. Also add an instruction that when any wiki document (`domain-model.md`, `database-schema.md`, etc.) receives its first substantive content, the skill updates that file's frontmatter `status` from `stub` to `active` and sets `last_updated`.
     - **Acceptance criteria**:
       - [ ] Feature spec creation path is `.eng-docs/specs/backlog/feature-[name].md`
       - [ ] Frontmatter is populated at creation: `created`, `last_updated`, `status: draft`, `specced_by`
       - [ ] Stage doc instructs setting wiki `status: active` on first substantive edit to a wiki file
     - **Dependencies**: Task: Add frontmatter to spec templates, Task: Add frontmatter to wiki templates
-  - [ ] **Task: Update `adrs.md` — create ADR with frontmatter; set `decided_by` at `accepted` transition**
+  - [x] **Task: Update `adrs.md` — create ADR with frontmatter; set `decided_by` at `accepted` transition**
     - **Description**: In `references/stages/adrs.md`, update the ADR creation step to populate frontmatter: `created`, `last_updated`, `status: proposed`, `decided_by: null`, `superseded_by: null`. Add an instruction at the approval checkpoint to set `decided_by` to the current GitHub username and update `status` to `accepted`.
     - **Acceptance criteria**:
       - [ ] ADR creation step populates all frontmatter fields
@@ -212,7 +212,7 @@ Add to the artifact structure section:
     - **Dependencies**: Task: Add frontmatter to ADR template
 
 - [ ] **Story: Update stage docs — lifecycle transitions**
-  - [ ] **Task: Update `task-decomposition.md` — set `status: approved` at checkpoint**
+  - [x] **Task: Update `task-decomposition.md` — set `status: approved` at checkpoint**
     - **Description**: In `references/stages/task-decomposition.md`, add an instruction to the human approval checkpoint step: after the human approves the task list, update the spec file's frontmatter `status` from `draft` to `approved` and set `last_updated`.
     - **Acceptance criteria**:
       - [ ] Checkpoint step includes instruction to set `status: approved` in the spec frontmatter
