@@ -3,6 +3,11 @@
 Use this template when creating a new application artifact.
 
 ```markdown
+---
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+---
+
 # [App name]
 
 ## What

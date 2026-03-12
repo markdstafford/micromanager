@@ -174,7 +174,7 @@ Add to the artifact structure section:
       - [ ] Frontmatter appears above the `# ADR NNN:` heading
       - [ ] Existing `## Status` section is unchanged
     - **Dependencies**: None
-  - [ ] **Task: Add frontmatter to app.md template**
+  - [x] **Task: Add frontmatter to app.md template**
     - **Description**: Add the app.md YAML frontmatter block to `references/templates/app.md`. Place it above the first heading. No `status` field — app.md has no lifecycle state.
     - **Acceptance criteria**:
       - [ ] `app.md` template has frontmatter block with `created` and `last_updated` only
