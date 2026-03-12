@@ -61,13 +61,16 @@ If an issue already exists, note its number and continue.
 
 ### 4. Pull latest main
 
-Before creating the worktree, ensure the local base branch is current:
+Before creating the worktree, switch to main and pull to ensure the local base branch is
+current:
 
 ```bash
-git pull origin main
+git checkout main && git pull origin main
 ```
 
-This ensures the new branch forks from the current tip of remote, not a stale local snapshot.
+This ensures the new branch forks from the current tip of remote, not a stale local
+snapshot. Pulling without switching first would merge main into whichever branch is
+currently checked out.
 
 ### 5. Create an isolated workspace
 
