@@ -99,6 +99,8 @@ Wiki documents in `.eng-docs/wiki/` are the source of truth. When any stage prod
 - API endpoints → update `api-contracts.md`
 - UI components or design tokens → update `design-system.md`
 
+When first adding substantive content to a wiki document that has `status: stub`, update its frontmatter: set `status: active` and `last_updated` to today's date.
+
 ### Working with your human
 
 Key principles (see references/collaboration-protocol.md for full details):
