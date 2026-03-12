@@ -38,8 +38,9 @@ Read it. Present a one-sentence summary of what the parent feature does.
 **CHECKPOINT**: Confirm with the human before proceeding.
 
 Once the parent feature is confirmed, choose a short kebab-case name for the enhancement (e.g., `at-reference-files`) and create the file:
-- Path: `.eng-docs/specs/enhancement-[name].md`
+- Path: `.eng-docs/specs/backlog/enhancement-[name].md` (create `.eng-docs/specs/backlog/` if it doesn't exist)
 - Copy from: `references/templates/enhancement.md`
+- Populate frontmatter immediately: set `created` and `last_updated` to today's date, `status: draft`, `specced_by` to the current GitHub username (`gh api user -q .login`), all other person/reference fields to `null`
 - Fill in the `## Parent feature` section now; leave all other sections to be filled in subsequent steps
 
 ### 2. What (1 paragraph)

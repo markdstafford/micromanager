@@ -159,7 +159,7 @@ Add to the artifact structure section:
 
 ## Task list
 
-- [ ] **Story: Add frontmatter to templates**
+- [x] **Story: Add frontmatter to templates**
   - [x] **Task: Add frontmatter to spec templates**
     - **Description**: Add the feature/enhancement YAML frontmatter block to `references/templates/feature.md` and `references/templates/enhancement.md`. Place the block at the top of the file, above the `# [title]` heading inside the fenced markdown code block in each template.
     - **Acceptance criteria**:
@@ -181,7 +181,7 @@ Add to the artifact structure section:
       - [ ] No `status` field present
       - [ ] Frontmatter appears above the first heading inside the template
     - **Dependencies**: None
-  - [ ] **Task: Add frontmatter to wiki templates**
+  - [x] **Task: Add frontmatter to wiki templates**
     - **Description**: Add the wiki YAML frontmatter block to all four wiki templates: `references/templates/wiki/api-contracts.md`, `database-schema.md`, `design-system.md`, `domain-model.md`. Place each block at the top of the file, above the first heading.
     - **Acceptance criteria**:
       - [ ] All four wiki templates have frontmatter with `created`, `last_updated`, `status: stub`
@@ -189,7 +189,7 @@ Add to the artifact structure section:
     - **Dependencies**: None
 
 - [ ] **Story: Update stage docs — artifact creation**
-  - [ ] **Task: Update `enhancements.md` — create spec in `backlog/` with frontmatter**
+  - [x] **Task: Update `enhancements.md` — create spec in `backlog/` with frontmatter**
     - **Description**: In `references/stages/enhancements.md`, update step 1 (the file creation instruction) to: (1) use path `.eng-docs/specs/backlog/enhancement-[name].md` instead of `.eng-docs/specs/enhancement-[name].md`, and (2) instruct the skill to populate the frontmatter block when creating the file, setting `created` from today's date, `status: draft`, and `specced_by` from the current GitHub username.
     - **Acceptance criteria**:
       - [ ] Step 1 specifies `backlog/` as the creation path
