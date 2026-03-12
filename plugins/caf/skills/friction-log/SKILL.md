@@ -35,7 +35,8 @@ git rev-parse --is-inside-work-tree 2>/dev/null
 Stub header to use:
 
 Populate the frontmatter fields as follows:
-- `created` and `last_updated`: current date/time, same as the filename timestamp (e.g. `2026-03-11 14:32`)
+- `created`: current date and time, same as the filename timestamp (e.g. `2026-03-11 14:32`)
+- `last_updated`: current date only (e.g. `2026-03-11`)
 - `status: untriaged`
 - `captured_by`: current GitHub username — run `gh api user -q .login` to retrieve it
 - `triaged_by: null`

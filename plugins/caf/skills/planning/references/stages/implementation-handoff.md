@@ -32,7 +32,7 @@ auto-selects and announces superpowers until a second system is added.
 The task list location is known from context — state it explicitly so it can be passed to
 the implementation system:
 
-- **From CAF planning**: task list is in `.eng-docs/specs/[feature-filename].md`
+- **From CAF planning**: task list is in `.eng-docs/specs/[feature-filename].md` (or `.eng-docs/specs/backlog/[feature-filename].md` if the spec was created after the `backlog/` convention was introduced and has not yet been moved)
 - **From a GitHub issue**: task list is in GitHub issue `#N`
 
 ### 3. Ensure a GitHub issue exists
