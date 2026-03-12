@@ -1,3 +1,9 @@
+---
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+status: stub
+---
+
 # Design System
 
 This document defines the UI design system including design tokens, components, patterns, and guidelines. It serves as the source of truth for visual and interaction design.
