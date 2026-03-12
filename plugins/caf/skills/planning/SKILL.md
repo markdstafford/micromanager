@@ -99,6 +99,8 @@ Wiki documents in `.eng-docs/wiki/` are the source of truth. When any stage prod
 - API endpoints → update `api-contracts.md`
 - UI components or design tokens → update `design-system.md`
 
+When first adding substantive content to a wiki document that has `status: stub`, update its frontmatter: set `status: active` and `last_updated` to today's date.
+
 ### Working with your human
 
 Key principles (see references/collaboration-protocol.md for full details):
@@ -143,12 +145,17 @@ All artifacts are stored in `.eng-docs/`:
     app.md                   # Application-level artifact (one per project)
     feature-*.md             # Feature-level artifacts (one per feature)
     enhancement-*.md         # Enhancement-level artifacts (one per enhancement)
+    backlog/                 # Unimplemented specs; moved to specs/ at implementation handoff
+      feature-*.md
+      enhancement-*.md
   wiki/                      # Technical documentation (source of truth)
     domain-model.md          # Core domain entities and relationships
     database-schema.md       # Database tables, columns, relationships
     api-contracts.md         # API endpoint definitions and contracts
     design-system.md         # UI components, design tokens, patterns
 ```
+
+**Frontmatter**: All artifact files begin with a YAML frontmatter block. The `status` field reflects the artifact's lifecycle state. Skills populate and update frontmatter fields at each lifecycle event (creation, approval, implementation handoff, PR creation). See the technical changes in `enhancement-spec-lifecycle-state.md` for the full schema per file type.
 
 **Initial setup**: When starting a new project, create stub files for wiki documents. These are populated as decisions are made and features are designed.
 

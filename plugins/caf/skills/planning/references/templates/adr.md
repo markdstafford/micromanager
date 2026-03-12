@@ -1,3 +1,11 @@
+---
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+status: proposed
+decided_by: null
+superseded_by: null
+---
+
 # ADR NNN: [Short title describing the decision]
 
 ## Status

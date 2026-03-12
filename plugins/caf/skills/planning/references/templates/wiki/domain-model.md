@@ -1,3 +1,9 @@
+---
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+status: stub
+---
+
 # Domain Model
 
 This document defines the core domain entities, their relationships, and business rules for the application. It serves as the source of truth for what domain concepts exist and how they relate to each other.

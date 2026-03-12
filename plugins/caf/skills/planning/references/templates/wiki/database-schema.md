@@ -1,3 +1,9 @@
+---
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+status: stub
+---
+
 # Database Schema
 
 This document defines the complete database schema including tables, columns, types, constraints, relationships, and indexes. It serves as the source of truth for the database structure.

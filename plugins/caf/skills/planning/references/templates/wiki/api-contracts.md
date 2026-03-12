@@ -1,3 +1,9 @@
+---
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+status: stub
+---
+
 # API Contracts
 
 This document defines all API endpoints, their request/response schemas, validation rules, and error codes. It serves as the source of truth for the API interface.
