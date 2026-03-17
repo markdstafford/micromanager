@@ -10,7 +10,7 @@ When the implementation handoff stage invokes `superpowers:finishing-a-developme
 
 ## Why
 
-`superpowers:finishing-a-development-branch` presents "merge locally" as a peer of "push and create a PR." In a worktree-based workflow, merging locally defeats the purpose of isolation. Because CAF owns the invocation context, it can pass instructions that constrain the option set without modifying the superpowers skill directly.
+`superpowers:finishing-a-development-branch` presents "merge locally" as a peer of "push and create a PR." In a worktree-based workflow, merging locally defeats the purpose of isolation. Because mm owns the invocation context, it can pass instructions that constrain the option set without modifying the superpowers skill directly.
 
 ## User stories
 
