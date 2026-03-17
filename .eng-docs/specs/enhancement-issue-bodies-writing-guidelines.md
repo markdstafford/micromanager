@@ -6,7 +6,7 @@
 
 ## What
 
-The triage skill applies the `caf:writing-guidelines` style when generating issue titles and bodies. This includes sentence case for all headings, active voice, specific and concrete language, and no unnecessary jargon. The skill loads or references the writing guidelines before generating any issue content.
+The triage skill applies the `mm:writing-guidelines` style when generating issue titles and bodies. This includes sentence case for all headings, active voice, specific and concrete language, and no unnecessary jargon. The skill loads or references the writing guidelines before generating any issue content.
 
 ## Why
 

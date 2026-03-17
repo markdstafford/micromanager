@@ -8,7 +8,7 @@ In **repo triage mode**, the skill fetches all unlabeled open issues, explores t
 
 In **feedback intake mode**, the skill accepts free-form input — bullet lists, verbal observations, friction logs, or any mix — and teases apart distinct items. It classifies each one, presents classifications for approval, then creates individual GitHub issues using the same enriched format. Friction logs receive special handling: pre-structured items are detected automatically, already-triaged items are skipped, and item severity is used as a priority signal.
 
-In both modes, after each issue is triaged or created, the skill offers to route immediately into the appropriate planning workflow — bugs to implementation handoff, features and enhancements to `caf:planning`.
+In both modes, after each issue is triaged or created, the skill offers to route immediately into the appropriate planning workflow — bugs to implementation handoff, features and enhancements to `mm:planning`.
 
 > **Note:** This skill is a candidate for renaming to "issue triage" with platform extensibility (GitHub, Linear, etc.) as a planned future enhancement.
 
@@ -32,7 +32,7 @@ Devon has 12 unlabeled issues that have piled up over a sprint. He invokes the t
 
 ### Converting a friction log
 
-Tara has just finished a testing session, guided by `caf:friction-log`. She ends up with 8 structured items on disk. She passes the file path to the triage skill, which reports "8 items found, 0 already triaged," and works through each one. Her two 🔴 blockers are proposed as P1, her 🟡 friction items as P2. As each issue is created in GitHub, the `Status` field in the friction log is updated to `triaged → #N`. Petra reviews the summary at the end and kicks off planning on the two P1 issues immediately.
+Tara has just finished a testing session, guided by `mm:friction-log`. She ends up with 8 structured items on disk. She passes the file path to the triage skill, which reports "8 items found, 0 already triaged," and works through each one. Her two 🔴 blockers are proposed as P1, her 🟡 friction items as P2. As each issue is created in GitHub, the `Status` field in the friction log is updated to `triaged → #N`. Petra reviews the summary at the end and kicks off planning on the two P1 issues immediately.
 
 ## User stories
 

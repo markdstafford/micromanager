@@ -6,7 +6,7 @@
 
 ## What
 
-The skill is renamed from `caf:github-issue-triage` to `caf:issue-triage`. All internal references, trigger descriptions, and documentation are updated to use the new name. The feature spec is updated to reflect the rename and the intent to support platforms beyond GitHub in the future.
+The skill is renamed from `mm:github-issue-triage` to `mm:issue-triage`. All internal references, trigger descriptions, and documentation are updated to use the new name. The feature spec is updated to reflect the rename and the intent to support platforms beyond GitHub in the future.
 
 ## Why
 
@@ -14,7 +14,7 @@ The skill is not exclusively a GitHub tool — it handles free-form feedback, fr
 
 ## User stories
 
-- Devon can invoke `caf:issue-triage` without having to remember it was previously named for GitHub specifically
+- Devon can invoke `mm:issue-triage` without having to remember it was previously named for GitHub specifically
 - Petra can describe the triage skill to a new team member without the name implying it only works with GitHub issues
 
 ## Design changes

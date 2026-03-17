@@ -4,7 +4,7 @@ description: >
   Use when the user wants to create a friction log or capture live usability feedback
   during a testing or workflow session. Triggered by any mention of "friction" or
   phrases like "log some friction", "capture feedback", or "document my experience".
-  Not for triaging existing feedback — use caf:issue-triage for that.
+  Not for triaging existing feedback — use mm:issue-triage for that.
 ---
 
 # Friction Log
@@ -141,4 +141,4 @@ reasonably infer the intent or severity, do so.
 - Create the file before saying anything to the user
 - Write each item to the file immediately after structuring it — never buffer
 - If the session ends unexpectedly, all structured items to that point are on disk
-- Follow `caf:writing-guidelines` when writing friction log items — clear, specific, jargon-free
+- Follow `mm:writing-guidelines` when writing friction log items — clear, specific, jargon-free
