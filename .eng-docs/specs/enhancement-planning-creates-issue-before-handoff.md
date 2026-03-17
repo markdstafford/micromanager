@@ -2,7 +2,7 @@
 
 ## Parent feature
 
-*(Parent spec not yet created — caf:planning)*
+*(Parent spec not yet created — mm:planning)*
 
 ## What
 
@@ -10,7 +10,7 @@ Before routing to implementation handoff, the planning workflow checks whether a
 
 ## Why
 
-Features and enhancements planned through CAF can reach implementation without ever having a GitHub issue. This means there is no tracking artifact visible to the team, no way to link PRs or commits to the work, and no record of what was built and why. Creating the issue at handoff time closes this gap without requiring a separate manual step.
+Features and enhancements planned through mm can reach implementation without ever having a GitHub issue. This means there is no tracking artifact visible to the team, no way to link PRs or commits to the work, and no record of what was built and why. Creating the issue at handoff time closes this gap without requiring a separate manual step.
 
 ## User stories
 

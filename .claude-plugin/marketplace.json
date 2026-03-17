@@ -1,5 +1,5 @@
 {
-  "name": "coding-agent-flow",
+  "name": "micromanager",
   "owner": {
     "name": "Mark Stafford"
   },
@@ -10,8 +10,8 @@
   },
   "plugins": [
     {
-      "name": "caf",
-      "source": "./plugins/caf",
+      "name": "mm",
+      "source": "./plugins/mm",
       "description": "Software development planning workflow with requirements, ADRs, design specs, tech specs, and task decomposition"
     }
   ]

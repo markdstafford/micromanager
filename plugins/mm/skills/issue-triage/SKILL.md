@@ -7,8 +7,8 @@ description: >
   all unlabeled issues, enriches each one with code context, rewrites the title and body in detail,
   classifies by type and priority, gets human approval, then writes the result back to GitHub. Issues
   that are too vague get a "needs-info" comment tagging the reporter. After triaging, offers to fix
-  the issue immediately by routing bugs to superpowers:writing-plans, features to caf:planning, and
-  enhancements to caf:planning.
+  the issue immediately by routing bugs to superpowers:writing-plans, features to mm:planning, and
+  enhancements to mm:planning.
   Also use when the user provides a list of feedback, notes, screenshots, or observations about the
   app — this skill will tease apart the items, classify them, create GitHub issues for each, and offer
   to route into the appropriate planning workflow. Use this skill even if the user only says
@@ -61,7 +61,7 @@ for the exact colors and descriptions to use.
 
 ### 4. Load writing guidelines
 
-Load `caf:writing-guidelines` before generating any issue content. Apply the following
+Load `mm:writing-guidelines` before generating any issue content. Apply the following
 throughout all issue titles and bodies:
 
 - Sentence case for all headings (e.g. "Steps to reproduce", not "Steps to Reproduce")
@@ -259,10 +259,10 @@ After a successful write, prompt based on the type label:
 
 **Fix now — route based on type label:**
 
-- **Bug** → Follow the `caf:planning` implementation handoff stage using issue `#[number]`
+- **Bug** → Follow the `mm:planning` implementation handoff stage using issue `#[number]`
   as the task list location.
-- **Feature (`feature-request`)** → Invoke `caf:planning` to start the feature requirements stage.
-- **Enhancement** → Invoke `caf:planning` to start the enhancement stage.
+- **Feature (`feature-request`)** → Invoke `mm:planning` to start the feature requirements stage.
+- **Enhancement** → Invoke `mm:planning` to start the enhancement stage.
 - **Documentation** → Open the relevant documentation file and proceed directly.
 - **Question** → No "fix now" path; move to the next issue.
 
@@ -323,7 +323,7 @@ Fixing now:   [list issue numbers, or "none"]
 Use this mode when the user provides free-form feedback — bullet lists, verbal notes,
 screenshots, or any mix of observations about the app.
 
-Load `caf:writing-guidelines` before generating any issue content. Apply sentence case
+Load `mm:writing-guidelines` before generating any issue content. Apply sentence case
 to all headings, active voice throughout, specific language, no unnecessary jargon.
 
 ### Step 1: Accept the input
@@ -462,7 +462,7 @@ behavior, Affected files, Suggested approach, Testing requirements).
    chooses `append`, append evidence to the existing issue and stop — do not write
    a spec or create a new issue.
 
-2. **Write the spec** — invoke `caf:planning` (feature requirements stage for features,
+2. **Write the spec** — invoke `mm:planning` (feature requirements stage for features,
    enhancement stage for enhancements) to write the spec file to `.eng-docs/specs/`.
 
 3. **Commit and push the spec** — commit and push the spec file so the link in the
@@ -488,7 +488,7 @@ behavior, Affected files, Suggested approach, Testing requirements).
 After creating each issue, confirm: *"Issue #[number] created for [item]."*
 
 Note: GitHub issues are created for all types — bugs, features, enhancements, documentation, and questions alike.
-The issue is the tracking artifact. The CAF planning spec is the planning artifact.
+The issue is the tracking artifact. The mm planning spec is the planning artifact.
 The issue links to the spec; the spec's frontmatter records the issue number.
 
 ### Step 5: Offer to start planning
@@ -510,9 +510,9 @@ Want to start planning any of these now?
 ```
 
 **If yes** — route based on type:
-- Bug → Follow the `caf:planning` implementation handoff stage using the issue number as the task list location.
-- Feature → `caf:planning` to start the feature requirements stage
-- Enhancement → `caf:planning` to start the enhancement stage
+- Bug → Follow the `mm:planning` implementation handoff stage using the issue number as the task list location.
+- Feature → `mm:planning` to start the feature requirements stage
+- Enhancement → `mm:planning` to start the enhancement stage
 - Documentation → open the relevant file and proceed directly
 - Question → no planning path; the issue stands as a tracking item
 

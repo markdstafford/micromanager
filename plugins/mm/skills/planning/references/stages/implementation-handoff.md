@@ -32,7 +32,7 @@ auto-selects and announces superpowers until a second system is added.
 The task list location is known from context — state it explicitly so it can be passed to
 the implementation system:
 
-- **From CAF planning**: task list is in `.eng-docs/specs/[feature-filename].md` (or `.eng-docs/specs/backlog/[feature-filename].md` if the spec was created after the `backlog/` convention was introduced and has not yet been moved)
+- **From mm planning**: task list is in `.eng-docs/specs/[feature-filename].md` (or `.eng-docs/specs/backlog/[feature-filename].md` if the spec was created after the `backlog/` convention was introduced and has not yet been moved)
 - **From a GitHub issue**: task list is in GitHub issue `#N`
 
 ### 3. Ensure a GitHub issue exists
@@ -100,14 +100,14 @@ precedence over writing-plans' own defaults where they conflict.
 
 **Task input.** The task list at [location] is the authoritative set of work to implement.
 Read the full task list and its hierarchy from [location] before generating the plan. Use
-the CAF tasks as the coarse-grained units — do not generate new top-level tasks from
-scratch. You may (and should) expand each CAF task into TDD micro-steps, but the CAF task
+the mm tasks as the coarse-grained units — do not generate new top-level tasks from
+scratch. You may (and should) expand each mm task into TDD micro-steps, but the mm task
 is the unit of human-visible tracking.
 
 **Plan storage.** Save the plan to `.eng-docs/.superpowers-plans/YYYY-MM-DD-<feature-name>.md`.
 Before saving, check that `.eng-docs/.superpowers-plans/` is in `.gitignore`; add it if not.
 
-**Task checkbox tracking.** Each CAF leaf task's section in the plan must end with an
+**Task checkbox tracking.** Each mm leaf task's section in the plan must end with an
 explicit step to check it off in [location]:
 
 - **Markdown file**: edit the file — change `- [ ]` to `- [x]` for that task's line

@@ -2,7 +2,7 @@
 
 ## Parent feature
 
-*(Parent spec not yet created — caf:planning)*
+*(Parent spec not yet created — mm:planning)*
 
 ## What
 

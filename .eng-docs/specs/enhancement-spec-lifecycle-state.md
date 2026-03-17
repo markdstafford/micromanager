@@ -2,11 +2,11 @@
 
 ## Parent feature
 
-*(Parent spec not yet created — caf:planning)*
+*(Parent spec not yet created — mm:planning)*
 
 ## What
 
-CAF skills add a YAML frontmatter block to every spec, ADR, wiki, and friction log file they create. The frontmatter captures lifecycle state and authorship. For feature and enhancement specs, status moves through `draft | approved | implementing | complete | superseded`. For ADRs: `proposed | accepted | deprecated | superseded`. For wiki docs: `stub | active`. For friction logs: `untriaged | triaged`. Skills update `status` and `last_updated` automatically at key lifecycle events (approval, handoff, completion).
+mm skills add a YAML frontmatter block to every spec, ADR, wiki, and friction log file they create. The frontmatter captures lifecycle state and authorship. For feature and enhancement specs, status moves through `draft | approved | implementing | complete | superseded`. For ADRs: `proposed | accepted | deprecated | superseded`. For wiki docs: `stub | active`. For friction logs: `untriaged | triaged`. Skills update `status` and `last_updated` automatically at key lifecycle events (approval, handoff, completion).
 
 Unimplemented specs are stored in a `backlog/` subfolder under `.eng-docs/specs/` until implementation begins, at which point they move to the root `specs/` folder. This makes pending vs. in-progress work visible at the directory level without opening files.
 
