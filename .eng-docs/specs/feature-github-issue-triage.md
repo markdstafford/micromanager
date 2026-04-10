@@ -10,8 +10,6 @@ In **feedback intake mode**, the skill accepts free-form input — bullet lists,
 
 In both modes, after each issue is triaged or created, the skill offers to route immediately into the appropriate planning workflow — bugs to implementation handoff, features and enhancements to `mm:planning`.
 
-> **Note:** This skill is a candidate for renaming to "issue triage" with platform extensibility (GitHub, Linear, etc.) as a planned future enhancement.
-
 ## Why
 
 GitHub issue triage solves a coordination problem: raw issues and feedback are noisy, inconsistently described, and hard to act on. Without a structured triage step, issues accumulate without priority, bugs get conflated with feature requests, and planning workflows start from unclear inputs.

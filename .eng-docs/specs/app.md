@@ -1,15 +1,15 @@
 ---
 created: 2026-03-16
-last_updated: 2026-03-16
+last_updated: 2026-04-10
 ---
 
 # micromanager
 
 ## What
 
-micromanager is a Claude Code plugin that gives developers a structured, collaborative workflow for planning software development work. It guides users through writing product requirements, architectural decision records, design specs, technical specs, and task decomposition — with human-AI checkpoints at each step to keep the work grounded and reviewed before moving forward. The plugin also includes utilities for issue triage and live usability feedback capture.
+micromanager is a Claude Code plugin that gives developers a structured, collaborative workflow for planning software development work. It guides users through writing product requirements, architectural decision records, design specs, technical specs, and task decomposition — with human-AI checkpoints at each step to keep the work grounded and reviewed before moving forward. The plugin also includes utilities for issue triage, live usability feedback capture, and keeping planning artifacts current over time.
 
-The plugin is distributed as a git repository and installed into Claude Code, where its skills become available as first-class commands in any development session. All planning artifacts are written to disk in a structured `.eng-docs/` directory inside the project, creating a durable, version-controlled record of every decision made during development.
+The plugin is distributed as a git repository and installed into Claude Code, where its skills become available as first-class commands in any development session. All planning artifacts are written to disk in a structured directory inside the project, creating a durable, version-controlled record of every decision made during development. The directory and issue tracker integration are configurable via an `mm.toml` file at the repo root.
 
 ## Why
 
@@ -52,8 +52,15 @@ With the issues open, Mark asks the skill to route one of them into the planning
 - **Tech specs** — architecture, API design, data models, and implementation plans
 - **Task decomposition** — hierarchical task breakdown with acceptance criteria and dependencies
 - **Implementation handoff** — routes approved task lists to implementation systems
+- **Configuration** — `mm.toml` / `mm.yaml` / `mm.json` at the repo root to set a custom docs directory and issue tracker
 
 ### Issue management
 
 - **Issue triage** — enriches, classifies, and writes GitHub issues from raw feedback or friction logs
 - **Friction log** — captures live usability observations during a testing session for later triage
+
+### Gardening
+
+- **mm:update-wiki** — scans the codebase and proposes updates to wiki documents that have drifted from what's actually implemented
+- **mm:update-spec** — grooms the top-level `spec.md` to reflect current active feature specs and ADRs
+- **mm:update-specs** — deep scan that verifies each detail spec against the codebase, updates any that have drifted, then syncs `spec.md`
