@@ -327,7 +327,7 @@ Fixing now:   [list issue numbers, or "none"]
 
 ## Reference files
 
-- `references/labels.md` — full label taxonomy with hex colors and descriptions for `gh label create`
+- `references/labels.md` — built-in default label taxonomy with hex colors and descriptions; overridden per-category by `labels.*` config keys
 
 ---
 
