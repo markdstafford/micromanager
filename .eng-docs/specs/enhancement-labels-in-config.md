@@ -1,10 +1,10 @@
 ---
 created: 2026-04-10
 last_updated: 2026-04-10
-status: draft
-issue: null
+status: complete
+issue: 50
 specced_by: markdstafford
-implemented_by: null
+implemented_by: markdstafford
 superseded_by: null
 ---
 
@@ -109,28 +109,28 @@ Low. The change is purely additive — no existing behavior changes unless a `la
 
 ## Task list
 
-- [ ] **Story: Extend config resolution in issue-triage**
-  - [ ] **Task: Read `labels` block in Phase 1 config resolution**
+- [x] **Story: Extend config resolution in issue-triage**
+  - [x] **Task: Read `labels` block in Phase 1 config resolution**
     - **Description**: In `plugins/mm/skills/issue-triage/SKILL.md`, extend the Phase 1 config resolution step to read `labels.type`, `labels.priority`, and `labels.meta` from config. For each category, use config values if present; fall back to `references/labels.md` built-in defaults if absent. Store resolved taxonomy in session context.
     - **Acceptance criteria**:
-      - [ ] Config with a `labels.type` block uses those labels instead of built-in type labels
-      - [ ] Config with no `labels` block produces identical behavior to current
-      - [ ] Categories are independent — overriding one does not affect others
+      - [x] Config with a `labels.type` block uses those labels instead of built-in type labels
+      - [x] Config with no `labels` block produces identical behavior to current
+      - [x] Categories are independent — overriding one does not affect others
     - **Dependencies**: None
-  - [ ] **Task: Use resolved taxonomy when creating labels (Phase 1 step 3)**
+  - [x] **Task: Use resolved taxonomy when creating labels (Phase 1 step 3)**
     - **Description**: Update the label creation step to iterate over the resolved taxonomy rather than the hardcoded list in `references/labels.md`. Use each entry's `name`, `color`, and `description` when calling `gh label create`.
     - **Acceptance criteria**:
-      - [ ] Labels are created with names, colors, and descriptions from resolved taxonomy
-      - [ ] Built-in behavior unchanged when no `labels` config is present
+      - [x] Labels are created with names, colors, and descriptions from resolved taxonomy
+      - [x] Built-in behavior unchanged when no `labels` config is present
     - **Dependencies**: "Read `labels` block in Phase 1 config resolution"
-  - [ ] **Task: Use resolved taxonomy during classification (Phase 3 step 4)**
+  - [x] **Task: Use resolved taxonomy during classification (Phase 3 step 4)**
     - **Description**: Update the classification step to present the resolved type and priority label names and descriptions to the AI, replacing the hardcoded tables. The AI uses descriptions to choose the correct label.
     - **Acceptance criteria**:
-      - [ ] Classification tables shown to AI reflect resolved taxonomy names and descriptions
-      - [ ] AI can distinguish between custom label names (e.g. "defect" vs "bug") using descriptions
+      - [x] Classification tables shown to AI reflect resolved taxonomy names and descriptions
+      - [x] AI can distinguish between custom label names (e.g. "defect" vs "bug") using descriptions
     - **Dependencies**: "Read `labels` block in Phase 1 config resolution"
-  - [ ] **Task: Use resolved taxonomy on write-back (Phase 3 step 7)**
+  - [x] **Task: Use resolved taxonomy on write-back (Phase 3 step 7)**
     - **Description**: Update the `gh issue edit --add-label` step to use the resolved label names, not hardcoded values.
     - **Acceptance criteria**:
-      - [ ] Labels applied to issues use names from resolved taxonomy
+      - [x] Labels applied to issues use names from resolved taxonomy
     - **Dependencies**: "Use resolved taxonomy during classification (Phase 3 step 4)"
