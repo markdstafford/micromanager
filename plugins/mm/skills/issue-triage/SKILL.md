@@ -46,7 +46,7 @@ gh auth status
 If `gh` is not authenticated or not installed, stop and tell the user.
 
 Resolve the mm config — check for `mm.toml`, `mm.yaml`, or `mm.json` at the repo root (in that order) and extract:
-- `docs_root` (default: `{docs_root}`) — base directory for friction logs and spec paths
+- `docs_root` (default: `.eng-docs`) — base directory for friction logs and spec paths
 - `issue_tracker` (default: `github`; valid values: `github`, `jira`) — issue tracking integration
 
 If `issue_tracker` is `jira`, all issue creation steps below should output: *"Jira integration not yet implemented — skipping issue creation for this item."* and continue to the next item.

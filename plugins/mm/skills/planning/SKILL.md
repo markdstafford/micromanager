@@ -77,7 +77,7 @@ done
 ```
 
 Extract from the config file (all fields fall back to defaults if absent or if no config file exists):
-- `docs_root` (default: `{docs_root}`) — base directory for all artifact paths in this session
+- `docs_root` (default: `.eng-docs`) — base directory for all artifact paths in this session
 - `issue_tracker` (default: `github`) — issue tracking integration
 
 Use `{docs_root}` throughout this session wherever a path into the docs directory appears.
