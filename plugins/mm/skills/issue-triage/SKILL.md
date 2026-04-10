@@ -48,6 +48,11 @@ If `gh` is not authenticated or not installed, stop and tell the user.
 Resolve the mm config — check for `mm.toml`, `mm.yaml`, or `mm.json` at the repo root (in that order) and extract:
 - `docs_root` (default: `.eng-docs`) — base directory for friction logs and spec paths
 - `issue_tracker` (default: `github`; valid values: `github`, `jira`) — issue tracking integration
+- `labels.type` — type label definitions (default: built-in taxonomy from `references/labels.md`)
+- `labels.priority` — priority label definitions (default: built-in taxonomy from `references/labels.md`)
+- `labels.meta` — meta label definitions (default: built-in taxonomy from `references/labels.md`)
+
+For each label category, if present in config use it as the complete list for that category; if absent fall back to the built-in defaults in `references/labels.md`. Store the fully resolved taxonomy — all three categories — in session context for use throughout this session.
 
 If `issue_tracker` is `jira`, all issue creation steps below should output: *"Jira integration not yet implemented — skipping issue creation for this item."* and continue to the next item.
 
@@ -61,9 +66,7 @@ Before fetching issues, ask once:
 Remember the choice for the entire session.
 
 ### 3. Ensure required labels exist
-Run `gh label list` and compare against the taxonomy in `references/labels.md`. Create any missing labels
-using `gh label create "<name>" --color "<hex>" --description "<desc>"`. Refer to `references/labels.md`
-for the exact colors and descriptions to use.
+Run `gh label list` and compare against the resolved taxonomy (from config if present, otherwise the built-in defaults in `references/labels.md`). Create any missing labels using `gh label create "<name>" --color "<hex>" --description "<desc>"` with the `name`, `color`, and `description` values from the resolved taxonomy.
 
 ### 4. Load writing guidelines
 
@@ -120,6 +123,8 @@ If unclear → go to the **Unclear issue path** below.
 Your goal: understand which specific files would need to change, and why.
 
 ### Step 4: Classify
+
+Use the label names and descriptions from the resolved taxonomy (stored in session context) when classifying. The tables below show the built-in defaults — if a custom taxonomy is configured, apply its label names and descriptions instead of those in the tables; the classification heuristics and decision rules within the tables still apply.
 
 Assign the following:
 
@@ -240,6 +245,8 @@ Replace KEYWORDS with extracted terms and CURRENT_NUMBER with the number of the 
 
 Every issue **must** have exactly one type label and exactly one priority label in `--add-label`. Double-check before running.
 
+Use the label names from the resolved taxonomy — if a custom taxonomy is configured, the names applied here must match the names defined in config, not the built-in defaults.
+
 Use `--body-file` to avoid shell-escaping of backticks and code fences in the issue body:
 
 ```bash
@@ -320,7 +327,7 @@ Fixing now:   [list issue numbers, or "none"]
 
 ## Reference files
 
-- `references/labels.md` — full label taxonomy with hex colors and descriptions for `gh label create`
+- `references/labels.md` — built-in default label taxonomy with hex colors and descriptions; overridden per-category by `labels.*` config keys
 
 ---
 
