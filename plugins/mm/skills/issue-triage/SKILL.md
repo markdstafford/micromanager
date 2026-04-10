@@ -124,6 +124,8 @@ Your goal: understand which specific files would need to change, and why.
 
 ### Step 4: Classify
 
+Use the resolved taxonomy label names and descriptions from session context. The tables below show the built-in defaults — when a custom taxonomy is configured, replace the label names and "When to use" descriptions with those from the resolved taxonomy.
+
 Assign the following:
 
 **One type label** (required):
