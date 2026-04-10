@@ -245,6 +245,8 @@ Replace KEYWORDS with extracted terms and CURRENT_NUMBER with the number of the 
 
 Every issue **must** have exactly one type label and exactly one priority label in `--add-label`. Double-check before running.
 
+Use the label names from the resolved taxonomy — if a custom taxonomy is configured, the names applied here must match the names defined in config, not the built-in defaults.
+
 Use `--body-file` to avoid shell-escaping of backticks and code fences in the issue body:
 
 ```bash
