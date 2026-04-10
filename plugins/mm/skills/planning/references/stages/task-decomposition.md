@@ -108,7 +108,7 @@ to show it here?" Do not show the full text unless asked.
 
 Get human approval on the condensed summary before proceeding to implementation handoff.
 
-After human approval, update the spec file's frontmatter: set `status: approved` and `last_updated` to today's date. The spec file is at `.eng-docs/specs/backlog/[name].md` (or `.eng-docs/specs/[name].md` if it predates the `backlog/` convention).
+After human approval, update the spec file's frontmatter: set `status: approved` and `last_updated` to today's date. The spec file is at `{docs_root}/specs/backlog/[name].md` (or `{docs_root}/specs/[name].md` if it predates the `backlog/` convention).
 
 ## Key guidelines
 

@@ -45,6 +45,12 @@ gh auth status
 ```
 If `gh` is not authenticated or not installed, stop and tell the user.
 
+Resolve the mm config — check for `mm.toml`, `mm.yaml`, or `mm.json` at the repo root (in that order) and extract:
+- `docs_root` (default: `{docs_root}`) — base directory for friction logs and spec paths
+- `issue_tracker` (default: `github`; valid values: `github`, `jira`) — issue tracking integration
+
+If `issue_tracker` is `jira`, all issue creation steps below should output: *"Jira integration not yet implemented — skipping issue creation for this item."* and continue to the next item.
+
 ### 2. Ask about analysis depth
 Before fetching issues, ask once:
 
@@ -333,7 +339,7 @@ Receive the feedback. It may arrive as:
 - A verbal description in the conversation
 - A mix of screenshots and notes
 - A single GitHub issue that contains multiple conflated items
-- A friction log file path (e.g. `.eng-docs/.friction-logs/2026-03-07-143022-episteme.md`)
+- A friction log file path (e.g. `{docs_root}/.friction-logs/2026-03-07-143022-episteme.md`)
 
 If the input is a GitHub issue body, treat it the same as free-form text — the goal is
 to tease apart what's inside it.
@@ -463,12 +469,12 @@ behavior, Affected files, Suggested approach, Testing requirements).
    a spec or create a new issue.
 
 2. **Write the spec** — invoke `mm:planning` (feature requirements stage for features,
-   enhancement stage for enhancements) to write the spec file to `.eng-docs/specs/`.
+   enhancement stage for enhancements) to write the spec file to `{docs_root}/specs/`.
 
 3. **Commit and push the spec** — commit and push the spec file so the link in the
    issue body is valid immediately:
    ```bash
-   git add .eng-docs/specs/[filename].md
+   git add {docs_root}/specs/[filename].md
    git commit -m "feat(specs): add [type] spec for [name]"
    git push
    ```
@@ -482,7 +488,7 @@ behavior, Affected files, Suggested approach, Testing requirements).
    [1-2 sentences: what this feature/enhancement does and why it matters.]
 
    ## Spec
-   `.eng-docs/specs/[filename].md`
+   `{docs_root}/specs/[filename].md`
    ```
 
 After creating each issue, confirm: *"Issue #[number] created for [item]."*
