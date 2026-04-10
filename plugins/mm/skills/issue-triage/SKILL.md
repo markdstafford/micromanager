@@ -66,9 +66,7 @@ Before fetching issues, ask once:
 Remember the choice for the entire session.
 
 ### 3. Ensure required labels exist
-Run `gh label list` and compare against the taxonomy in `references/labels.md`. Create any missing labels
-using `gh label create "<name>" --color "<hex>" --description "<desc>"`. Refer to `references/labels.md`
-for the exact colors and descriptions to use.
+Run `gh label list` and compare against the resolved taxonomy (from config if present, otherwise the built-in defaults in `references/labels.md`). Create any missing labels using `gh label create "<name>" --color "<hex>" --description "<desc>"` with the `name`, `color`, and `description` values from the resolved taxonomy.
 
 ### 4. Load writing guidelines
 
