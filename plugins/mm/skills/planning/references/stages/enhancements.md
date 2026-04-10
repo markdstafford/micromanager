@@ -53,7 +53,7 @@ specifically. Do not describe the implementation.
 - Present for review
 - **CHECKPOINT**: Get human approval before proceeding to Why
 
-**Anti-solutioning**: Same rules as feature requirements. The What describes new user-visible behavior, not how it's built.
+**Anti-solutioning**: Same rules as feature requirements. What answers "what are we building?" — describe the new behavior in plain terms. The What describes new user-visible behavior, not how it's built.
 
 ### 3. Why (1 paragraph)
 
