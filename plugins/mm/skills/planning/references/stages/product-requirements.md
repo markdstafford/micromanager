@@ -27,7 +27,7 @@ This stage guides the creation of product requirements for applications and feat
 - **CHECKPOINT**: Get human approval before proceeding to Why
 
 **Anti-solutioning**: The What section describes the problem space and capability, NOT the implementation.
-- What should answer: what can users do that they couldn't before?
+- What should answer: "what are we building?" — describe the thing in plain terms and what it lets users do
 - **Red flag**: If your What section mentions specific technologies, UI patterns, or architecture, you're solutioning. Remove those details.
 - Before: "Episteme uses a Tauri-based desktop framework with React frontend to provide document authoring..."
 - After: "Episteme is a document authoring application for teams working on collaborative documentation..."
@@ -43,7 +43,7 @@ This stage guides the creation of product requirements for applications and feat
 - **CHECKPOINT**: Get human approval on both What and Why before proceeding
 
 **Anti-solutioning**: The Why section describes motivation and value, NOT how we'll deliver it.
-- Why should answer: why does this matter to users/the business?
+- Why should answer: "how is the user's life better after we ship this?" — concrete before/after, no delivery mechanics
 - **Red flag**: If your Why section reads like a pitch for a specific technical approach, you're solutioning. Focus on the user's problem.
 - Before: "By using AI-powered document generation with vector embeddings, teams can..."
 - After: "Writing good documentation requires deep thinking about critical decisions, but authors spend mental energy on mechanical tasks..."
@@ -212,6 +212,8 @@ Most feature-*.md files will NOT have this section. Only include for features th
 - Goals: Human leads (60% human, 40% you)
 
 **Anti-solutioning checklist:**
+- [ ] Does What answer "what are we building?" in plain terms — the thing and what it lets users do?
+- [ ] Does Why answer "how is the user's life better after we ship this?" — concrete before/after, no delivery mechanics?
 - [ ] Does What describe the problem space and capability without prescribing implementation?
 - [ ] Does Why describe motivation and value without pitching a technical approach?
 - [ ] Are technologies, UI patterns, and architecture absent from What/Why sections?
