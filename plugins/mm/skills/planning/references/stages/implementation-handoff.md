@@ -74,9 +74,9 @@ currently checked out.
 
 ### 5. Create an isolated workspace
 
-Invoke `superpowers:using-git-worktrees` to create a branch and worktree for this
-implementation. Use a branch name derived from the feature or issue (e.g.
-`feat/[short-name]` or `fix/[short-name]`).
+**If arriving here from a planning session** (i.e. the spec was written on a feature branch during this session): invoke `superpowers:using-git-worktrees` using the existing branch — do not create a new one. The spec is already on the right branch.
+
+**If arriving here independently** (e.g. from a GitHub issue, or a spec written in a previous session): invoke `superpowers:using-git-worktrees` to create a new branch and worktree. Use a branch name derived from the feature or issue (e.g. `feat/[short-name]` or `fix/[short-name]`).
 
 **Do not proceed to step 6 if still on main after this step.** If the worktree skill
 leaves the session on main, stop and investigate before continuing.

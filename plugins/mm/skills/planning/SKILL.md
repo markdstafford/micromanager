@@ -43,9 +43,24 @@ A structured, collaborative process for planning software development work — f
 2. **Create design spec** — design user flows and UI components (default for all features with UI; skip only for backend-only work)
 3. **Write tech spec** — define architecture, APIs, data models, and implementation plan
 4. **Decompose tasks** — break work into implementable tasks with acceptance criteria
-5. **Implementation handoff** — route approved tasks to an implementation system
+5. **Spec completion** — after the task list is approved, ask what to do next (see Spec completion below)
+6. **Implementation handoff** — route approved tasks to an implementation system (only if chosen in step 5)
 
 After completing the workflow, return to step 1 for the next feature.
+
+### Spec completion
+
+After the task list is approved and written to disk, ask:
+
+> "Spec approved. What next?
+> a. Continue to implementation — I'll set up the worktree and hand off
+> b. Open a PR for the spec only
+> c. Stay on the branch — nothing more needed now"
+
+Route accordingly:
+- **a** → invoke `superpowers:using-git-worktrees` from the current branch (do not create a new branch), then proceed with implementation handoff as normal
+- **b** → create a PR from the spec branch to main; confirm the PR URL when done
+- **c** → confirm the branch name so the user can return to it later; do nothing else
 
 ## Shared concepts
 
@@ -78,6 +93,20 @@ Before starting design specs, tech specs, or any stage that builds on prior work
 3. **CHECKPOINT**: Get explicit approval before proceeding to the next section
 4. Never write multiple sections at once
 5. If the human wants to skip ahead, remind them of the process; if they insist, note what was skipped
+
+### Branch setup
+
+Before creating any artifact file, create a branch for this planning session:
+
+1. Choose a short kebab-case name for the work (e.g. `user-auth`, `csv-export`, `planning-impl-intent`)
+2. Create and check out the branch:
+   ```bash
+   git checkout -b feat/[short-name]
+   # or enhancement/[short-name] for enhancements, fix/[short-name] for bug fixes
+   ```
+3. All spec content is written to this branch. Main is never touched.
+
+If the branch already exists or checkout fails, stop and surface the error before proceeding.
 
 ### Artifact file management
 
