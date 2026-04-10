@@ -32,7 +32,7 @@ auto-selects and announces superpowers until a second system is added.
 The task list location is known from context — state it explicitly so it can be passed to
 the implementation system:
 
-- **From mm planning**: task list is in `.eng-docs/specs/[feature-filename].md` (or `.eng-docs/specs/backlog/[feature-filename].md` if the spec was created after the `backlog/` convention was introduced and has not yet been moved)
+- **From mm planning**: task list is in `{docs_root}/specs/[feature-filename].md` (or `{docs_root}/specs/backlog/[feature-filename].md` if the spec was created after the `backlog/` convention was introduced and has not yet been moved)
 - **From a GitHub issue**: task list is in GitHub issue `#N`
 
 ### 3. Ensure a GitHub issue exists
@@ -53,7 +53,7 @@ echo "$output"
 
 The issue body should contain:
 - A 1–2 sentence summary of what the feature/enhancement does and why it matters
-- A link to the spec file: `**Spec:** .eng-docs/specs/[filename].md`
+- A link to the spec file: `**Spec:** {docs_root}/specs/[filename].md`
 
 After creating the issue, record its number in the spec's frontmatter `issue` field.
 
@@ -85,9 +85,9 @@ After the worktree is created, move the spec file out of `backlog/` and update i
 
 ```bash
 # Only if the spec is in backlog/ (created after this enhancement was implemented)
-spec=$(ls .eng-docs/specs/backlog/[feature-or-enhancement-filename] 2>/dev/null)
+spec=$(ls {docs_root}/specs/backlog/[feature-or-enhancement-filename] 2>/dev/null)
 if [ -n "$spec" ]; then
-  git mv "$spec" .eng-docs/specs/
+  git mv "$spec" {docs_root}/specs/
 fi
 ```
 
@@ -104,8 +104,8 @@ the mm tasks as the coarse-grained units — do not generate new top-level tasks
 scratch. You may (and should) expand each mm task into TDD micro-steps, but the mm task
 is the unit of human-visible tracking.
 
-**Plan storage.** Save the plan to `.eng-docs/.superpowers-plans/YYYY-MM-DD-<feature-name>.md`.
-Before saving, check that `.eng-docs/.superpowers-plans/` is in `.gitignore`; add it if not.
+**Plan storage.** Save the plan to `{docs_root}/.superpowers-plans/YYYY-MM-DD-<feature-name>.md`.
+Before saving, check that `{docs_root}/.superpowers-plans/` is in `.gitignore`; add it if not.
 
 **Task checkbox tracking.** Each mm leaf task's section in the plan must end with an
 explicit step to check it off in [location]:

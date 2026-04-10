@@ -13,7 +13,7 @@ stand alone as independent functionality, use the feature requirements stage ins
 
 ## Output artifacts
 
-- `enhancement-*.md` — one per enhancement, stored in `.eng-docs/specs/`
+- `enhancement-*.md` — one per enhancement, stored in `{docs_root}/specs/`
   - Contains: Parent feature, What, Why, User stories
   - Design changes, Technical changes, and Task list sections are added by later stages
 
@@ -21,7 +21,7 @@ stand alone as independent functionality, use the feature requirements stage ins
 
 First, run the standard prerequisite check from SKILL.md (ADRs, wiki documents, dependent feature specs).
 
-Then, additionally locate and read the parent feature spec in `.eng-docs/specs/`.
+Then, additionally locate and read the parent feature spec in `{docs_root}/specs/`.
 
 **If the parent feature spec doesn't exist:** stop. The enhancement cannot be specified without it.
 Propose creating the parent feature spec first using the feature requirements stage.
@@ -38,7 +38,7 @@ Read it. Present a one-sentence summary of what the parent feature does.
 **CHECKPOINT**: Confirm with the human before proceeding.
 
 Once the parent feature is confirmed, choose a short kebab-case name for the enhancement (e.g., `at-reference-files`) and create the file:
-- Path: `.eng-docs/specs/backlog/enhancement-[name].md` (create `.eng-docs/specs/backlog/` if it doesn't exist)
+- Path: `{docs_root}/specs/backlog/enhancement-[name].md` (create `{docs_root}/specs/backlog/` if it doesn't exist)
 - Copy from: `references/templates/enhancement.md`
 - Populate frontmatter immediately: set `created` and `last_updated` to today's date, `status: draft`, `specced_by` to the current GitHub username (`gh api user -q .login`), all other person/reference fields to `null`
 - Fill in the `## Parent feature` section now; leave all other sections to be filled in subsequent steps

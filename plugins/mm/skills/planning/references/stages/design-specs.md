@@ -17,11 +17,11 @@ Creates a `## Design spec` section within the feature artifact containing:
 
 Before starting, verify these exist. Follow the planning skill's prerequisite checking pattern for how to handle gaps.
 
-- [ ] UI components documented in `.eng-docs/wiki/design-system.md`?
+- [ ] UI components documented in `{docs_root}/wiki/design-system.md`?
 - [ ] Design tokens defined (colors, spacing, typography)?
 - [ ] Navigation and form patterns established?
 - [ ] Error handling and loading state patterns defined?
-- [ ] Major UI framework choices documented in `.eng-docs/adrs/`?
+- [ ] Major UI framework choices documented in `{docs_root}/adrs/`?
 - [ ] Dependent UI components from other features exist?
 
 ## Process

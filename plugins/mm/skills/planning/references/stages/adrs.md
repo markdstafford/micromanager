@@ -19,7 +19,7 @@ This stage guides the creation of Architectural Decision Records (ADRs) to docum
 
 ## Output
 
-Individual ADR files in `.eng-docs/adrs/` with naming pattern `adr-NNN-title.md`.
+Individual ADR files in `{docs_root}/adrs/` with naming pattern `adr-NNN-title.md`.
 
 Each ADR contains: Title, Status, Context, Decision, Consequences (positive and negative), Alternatives considered.
 
@@ -32,7 +32,7 @@ Each ADR contains: Title, Status, Context, Decision, Consequences (positive and 
 - Assign the next available ADR number
 
 Create the ADR file at this point:
-- Path: `.eng-docs/adrs/adr-NNN-title.md` (use the next available number)
+- Path: `{docs_root}/adrs/adr-NNN-title.md` (use the next available number)
 - Copy from: `references/templates/adr.md`
 - Populate frontmatter: set `created` and `last_updated` to today's date, `status: proposed`, `decided_by: null`, `superseded_by: null`
 
@@ -81,7 +81,7 @@ Create the ADR file at this point:
 
 ### 6. Update related artifacts
 
-- Write ADR file to `.eng-docs/adrs/adr-NNN-title.md`
+- Write ADR file to `{docs_root}/adrs/adr-NNN-title.md`
 - Update the ADR's frontmatter: set `status: accepted`, `decided_by` to the current GitHub username (`gh api user -q .login`), and `last_updated` to today's date. Also update the `## Status` section in the file body to "Accepted".
 - Update wiki artifacts based on decision type (see planning skill's wiki management)
 - Reference the ADR in app.md or feature-*.md if applicable

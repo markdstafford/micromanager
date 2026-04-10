@@ -149,7 +149,7 @@ Only include if design constraints exist. Ask about brand colors, typography, sp
 ### 0. Create the artifact file
 
 Before starting any sections, create the feature spec file:
-- Path: `.eng-docs/specs/backlog/feature-[name].md` (create `.eng-docs/specs/backlog/` if it doesn't exist)
+- Path: `{docs_root}/specs/backlog/feature-[name].md` (create `{docs_root}/specs/backlog/` if it doesn't exist)
 - Copy from: `references/templates/feature.md`
 - Populate frontmatter immediately: set `created` and `last_updated` to today's date, `status: draft`, `specced_by` to the current GitHub username (`gh api user -q .login`), all other person/reference fields to `null`
 - Fill in the feature name in the `# [Feature name]` heading; leave all sections empty until they are approved

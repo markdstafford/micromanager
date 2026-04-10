@@ -23,15 +23,15 @@ Creates a `## Tech spec` section within the feature artifact with these subsecti
 
 Before starting, verify these exist. Follow the planning skill's prerequisite checking pattern for how to handle gaps.
 
-- [ ] Backend API style ADR (REST, GraphQL, gRPC, etc.) in `.eng-docs/adrs/`?
-- [ ] Data storage approach ADR in `.eng-docs/adrs/`?
-- [ ] Authentication/authorization pattern ADR in `.eng-docs/adrs/`?
-- [ ] Frontend state management approach ADR in `.eng-docs/adrs/`?
-- [ ] Domain entities defined in `.eng-docs/wiki/domain-model.md`?
+- [ ] Backend API style ADR (REST, GraphQL, gRPC, etc.) in `{docs_root}/adrs/`?
+- [ ] Data storage approach ADR in `{docs_root}/adrs/`?
+- [ ] Authentication/authorization pattern ADR in `{docs_root}/adrs/`?
+- [ ] Frontend state management approach ADR in `{docs_root}/adrs/`?
+- [ ] Domain entities defined in `{docs_root}/wiki/domain-model.md`?
 - [ ] Relationships and business rules documented?
-- [ ] Database schemas for relevant entities in `.eng-docs/wiki/database-schema.md`?
-- [ ] API endpoints for relevant services in `.eng-docs/wiki/api-contracts.md`?
-- [ ] Dependent features exist in `.eng-docs/specs/`?
+- [ ] Database schemas for relevant entities in `{docs_root}/wiki/database-schema.md`?
+- [ ] API endpoints for relevant services in `{docs_root}/wiki/api-contracts.md`?
+- [ ] Dependent features exist in `{docs_root}/specs/`?
 
 **For CRITICAL gaps** (no API style, no domain model, no database): STOP. Do not offer to "document assumptions and proceed." These decisions must be made first.
 
