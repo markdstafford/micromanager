@@ -48,6 +48,11 @@ If `gh` is not authenticated or not installed, stop and tell the user.
 Resolve the mm config — check for `mm.toml`, `mm.yaml`, or `mm.json` at the repo root (in that order) and extract:
 - `docs_root` (default: `.eng-docs`) — base directory for friction logs and spec paths
 - `issue_tracker` (default: `github`; valid values: `github`, `jira`) — issue tracking integration
+- `labels.type` — type label definitions (default: built-in taxonomy from `references/labels.md`)
+- `labels.priority` — priority label definitions (default: built-in taxonomy from `references/labels.md`)
+- `labels.meta` — meta label definitions (default: built-in taxonomy from `references/labels.md`)
+
+For each label category, if present in config use it as the complete list for that category; if absent fall back to the built-in defaults in `references/labels.md`. Store the fully resolved taxonomy — all three categories — in session context for use throughout this session.
 
 If `issue_tracker` is `jira`, all issue creation steps below should output: *"Jira integration not yet implemented — skipping issue creation for this item."* and continue to the next item.
 
