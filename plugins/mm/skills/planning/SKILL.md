@@ -68,17 +68,9 @@ These apply across ALL stages. Stage documents reference back here.
 
 ### Config
 
-At the start of every planning session, resolve the mm config:
-
-```bash
-for f in mm.toml mm.yaml mm.json; do
-  [ -f "$f" ] && { CONFIG_FILE="$f"; break; }
-done
-```
-
-Extract from the config file (all fields fall back to defaults if absent or if no config file exists):
-- `docs_root` (default: `.eng-docs`) — base directory for all artifact paths in this session
-- `issue_tracker` (default: `github`) — issue tracking integration
+mm config is resolved at session start by the mm hook and available in session context. The resolved values are:
+- `docs_root` — base directory for all artifact paths in this session
+- `issue_tracker` — issue tracking integration
 
 Use `{docs_root}` throughout this session wherever a path into the docs directory appears.
 
