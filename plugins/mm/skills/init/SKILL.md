@@ -38,11 +38,12 @@ Check for `mm.toml`, `mm.yaml`, or `mm.json` at the repo root (in that order). I
 
 Show all known settings with current values and defaults:
 
+When config exists with values:
 ```
 mm configuration
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 1. docs_root
-   Current: ".eng-docs"  |  Default: ".eng-docs"
+   Current: "docs/eng"  |  Default: ".eng-docs"
 
 2. issue_tracker
    Current: "github"  |  Default: "github"
@@ -50,9 +51,22 @@ mm configuration
 For each setting: press Enter to keep current value, type a new value, or type "default" to reset.
 ```
 
+When no config exists:
+```
+mm configuration
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. docs_root
+   Current: (not set)  |  Default: ".eng-docs"
+
+2. issue_tracker
+   Current: (not set)  |  Default: "github"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+For each setting: press Enter to use the default, type a new value, or type "default" to use the default.
+```
+
 For each setting in order:
-- Prompt: `docs_root [.eng-docs]: `
-- Accept input: empty → keep current; new value → use it; `default` → use the default
+- Prompt: `docs_root [current value or default]: ` — show the current value in brackets, or the default if not set
+- Accept input: empty → keep current value (or default if unset); new value → use it; `default` → reset to default
 - Repeat for `issue_tracker`
 
 ### 3. Show preview and confirm
@@ -67,7 +81,7 @@ issue_tracker = "github"
 Write mm.toml? (yes / no)
 ```
 
-On `yes`: write `mm.toml` with all settings, then commit:
+On `yes`: check whether the resulting `mm.toml` content would differ from the existing file. If no file existed before, or if the content changed, write `mm.toml` with all settings and commit:
 
 ```bash
 git add mm.toml
@@ -76,9 +90,15 @@ git commit -m "chore: add mm.toml"
 
 (If `mm.toml` already existed and was updated, use `git commit -m "chore: update mm.toml"`.)
 
-On `no`: discard and exit without writing.
+If the content would be identical to the existing file, skip the write and commit and instead say:
 
-### 4. Confirm
+```
+No changes — mm.toml is already up to date.
+```
+
+On `no`: discard and exit without writing. Tell the user: "Cancelled. No changes written."
+
+### 4. Done
 
 ```
 mm.toml written. mm is configured for this project.
