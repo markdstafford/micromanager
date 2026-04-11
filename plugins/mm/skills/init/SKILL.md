@@ -105,3 +105,37 @@ mm.toml written. mm is configured for this project.
 ```
 
 If the project doesn't have a git repo, skip the commit step and just confirm the file was written.
+
+## Session-start invocation
+
+When Claude receives context from the mm session-start hook indicating action is needed, handle the appropriate case before proceeding with any other session work.
+
+### Case 1: No config file found
+
+Hook context will say: `"No mm.toml found. Starting mm:init to configure mm for this project."`
+
+Walk through all known settings in order using the same steps as direct invocation (steps 1–3), but frame it as first-time setup:
+
+```
+Welcome! mm isn't configured for this project yet. Let's set it up — it takes about a minute.
+```
+
+After writing `mm.toml`, say:
+```
+mm is configured. Continuing with your session.
+```
+
+### Case 2: Missing settings found
+
+Hook context will say: `"mm.toml is missing settings: [list]. Starting mm:init to fill them in."`
+
+Walk through only the listed settings. For each, show the setting name and default value, and prompt for a value or press Enter to accept the default. Append the new settings to the existing `mm.toml` — do not rewrite the whole file; preserve all existing content.
+
+After writing, say:
+```
+mm.toml updated with new settings. Continuing with your session.
+```
+
+### Case 3: Config complete
+
+The hook exits silently when config is complete — no context is injected about mm:init. Take no action; the session proceeds normally.
