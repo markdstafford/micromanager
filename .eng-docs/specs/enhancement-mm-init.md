@@ -1,7 +1,7 @@
 ---
 created: 2026-04-11
 last_updated: 2026-04-11
-status: implementing
+status: complete
 issue: 51
 specced_by: markdstafford
 implemented_by: markdstafford
@@ -117,52 +117,52 @@ The hook runs at every session start including resumptions and after `/clear`; s
 
 ## Task list
 
-- [ ] **Story: Create mm:init skill**
-  - [ ] **Task: Write direct invocation flow in `plugins/mm/skills/init/SKILL.md`**
+- [x] **Story: Create mm:init skill**
+  - [x] **Task: Write direct invocation flow in `plugins/mm/skills/init/SKILL.md`**
     - **Description**: Create the init skill file. Define the canonical list of required settings with their defaults (`docs_root`: `.eng-docs`, `issue_tracker`: `github`). The direct invocation flow presents each setting with its current value and the default, allows entering a new value, pressing enter to keep the current value, or typing `default` to reset. Shows a preview of the resulting `mm.toml` before writing. Writes all settings explicitly on confirmation, even those at their defaults.
     - **Acceptance criteria**:
-      - [ ] Skill file exists at `plugins/mm/skills/init/SKILL.md` with name and description frontmatter
-      - [ ] Known settings section lists `docs_root` (default: `.eng-docs`) and `issue_tracker` (default: `github`)
-      - [ ] Direct invocation flow presents each setting with current value and default
-      - [ ] User can enter a new value, keep current, or type `default` to reset
-      - [ ] Preview of resulting `mm.toml` shown before writing
-      - [ ] `mm.toml` written with all settings on confirmation, even those at default
+      - [x] Skill file exists at `plugins/mm/skills/init/SKILL.md` with name and description frontmatter
+      - [x] Known settings section lists `docs_root` (default: `.eng-docs`) and `issue_tracker` (default: `github`)
+      - [x] Direct invocation flow presents each setting with current value and default
+      - [x] User can enter a new value, keep current, or type `default` to reset
+      - [x] Preview of resulting `mm.toml` shown before writing
+      - [x] `mm.toml` written with all settings on confirmation, even those at default
     - **Dependencies**: None
-  - [ ] **Task: Add session-start invocation section to `plugins/mm/skills/init/SKILL.md`**
+  - [x] **Task: Add session-start invocation section to `plugins/mm/skills/init/SKILL.md`**
     - **Description**: Add the session-start flow to the init skill. Two cases: (a) no config file — walk through all settings in order and write `mm.toml`; (b) settings missing from existing config — walk through only the missing ones and append them. In both cases the file is written before the session continues. Include a note on the known limitation: conditional and structured settings (e.g. label taxonomy, future Jira-specific settings) are out of scope.
     - **Acceptance criteria**:
-      - [ ] Session-start mode section present in the skill, clearly distinct from direct invocation
-      - [ ] No-config case walks through all settings and writes `mm.toml`
-      - [ ] Missing-settings case walks through only missing settings and appends to existing file
-      - [ ] File is written before the rest of the session proceeds
-      - [ ] Known limitation about conditional/structured settings documented in the skill
+      - [x] Session-start mode section present in the skill, clearly distinct from direct invocation
+      - [x] No-config case walks through all settings and writes `mm.toml`
+      - [x] Missing-settings case walks through only missing settings and appends to existing file
+      - [x] File is written before the rest of the session proceeds
+      - [x] Known limitation about conditional/structured settings documented in the skill
     - **Dependencies**: "Write direct invocation flow in `plugins/mm/skills/init/SKILL.md`"
 
-- [ ] **Story: Create session-start hook**
-  - [ ] **Task: Write `plugins/mm/hooks/session-start.sh`**
+- [x] **Story: Create session-start hook**
+  - [x] **Task: Write `plugins/mm/hooks/session-start.sh`**
     - **Description**: Create the hook script that runs at session start. Read `mm.toml` (falling back to `mm.yaml` then `mm.json`). Inject resolved config values as `additionalContext` (`mm config: docs_root="...", issue_tracker="..."`). Then check for missing required settings: if no config file exists, inject context saying mm:init is needed; if settings are missing, inject context listing them; if all settings present, exit silently. Fall back to defaults on any parse error.
     - **Acceptance criteria**:
-      - [ ] Script exists at `plugins/mm/hooks/session-start.sh` and is executable
-      - [ ] Reads `mm.toml` first, then `mm.yaml`, then `mm.json`; stops at first found
-      - [ ] Injects resolved config as `additionalContext`: `mm config: docs_root="...", issue_tracker="..."`
-      - [ ] No config file: injects context indicating mm:init is needed
-      - [ ] Config exists but settings missing: injects context listing missing settings
-      - [ ] Config complete: exits silently with no output
-      - [ ] Falls back to defaults on any parse error
+      - [x] Script exists at `plugins/mm/hooks/session-start.sh` and is executable
+      - [x] Reads `mm.toml` first, then `mm.yaml`, then `mm.json`; stops at first found
+      - [x] Injects resolved config as `additionalContext`: `mm config: docs_root="...", issue_tracker="..."`
+      - [x] No config file: injects context indicating mm:init is needed
+      - [x] Config exists but settings missing: injects context listing missing settings
+      - [x] Config complete: exits silently with no output
+      - [x] Falls back to defaults on any parse error
     - **Dependencies**: None
 
-- [ ] **Story: Remove config resolution from existing skills**
-  - [ ] **Task: Remove config resolution block from `plugins/mm/skills/planning/SKILL.md`**
+- [x] **Story: Remove config resolution from existing skills**
+  - [x] **Task: Remove config resolution block from `plugins/mm/skills/planning/SKILL.md`**
     - **Description**: Remove the `for f in mm.toml mm.yaml mm.json` config resolution block and the `docs_root`/`issue_tracker` extraction logic. Replace with a note that config is resolved at session start by the mm hook and available in session context. All `{docs_root}` path references in the file stay unchanged.
     - **Acceptance criteria**:
-      - [ ] Config resolution block removed
-      - [ ] Note present indicating config values come from session context (provided by mm hook)
-      - [ ] All `{docs_root}` path references preserved unchanged
+      - [x] Config resolution block removed
+      - [x] Note present indicating config values come from session context (provided by mm hook)
+      - [x] All `{docs_root}` path references preserved unchanged
     - **Dependencies**: "Write `plugins/mm/hooks/session-start.sh`"
-  - [ ] **Task: Remove config resolution block from `plugins/mm/skills/issue-triage/SKILL.md`**
+  - [x] **Task: Remove config resolution block from `plugins/mm/skills/issue-triage/SKILL.md`**
     - **Description**: Same as the planning skill — remove the config resolution block and replace with a session context reference note.
     - **Acceptance criteria**:
-      - [ ] Config resolution block removed
-      - [ ] Note present indicating config values come from session context (provided by mm hook)
-      - [ ] All `{docs_root}` path references preserved unchanged
+      - [x] Config resolution block removed
+      - [x] Note present indicating config values come from session context (provided by mm hook)
+      - [x] All `{docs_root}` path references preserved unchanged
     - **Dependencies**: "Write `plugins/mm/hooks/session-start.sh`"
