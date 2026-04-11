@@ -114,7 +114,7 @@ When Claude receives context from the mm session-start hook indicating action is
 
 Hook context will say: `"No mm.toml found. Starting mm:init to configure mm for this project."`
 
-Walk through all known settings in order using the same steps as direct invocation (steps 1–3), but frame it as first-time setup:
+Walk through all known settings in order using the same steps as direct invocation (steps 1–3) (including the git commit in step 3; replace step 4's confirmation message with the session-start message below), but frame it as first-time setup:
 
 ```
 Welcome! mm isn't configured for this project yet. Let's set it up — it takes about a minute.
@@ -127,9 +127,13 @@ mm is configured. Continuing with your session.
 
 ### Case 2: Missing settings found
 
-Hook context will say: `"mm.toml is missing settings: [list]. Starting mm:init to fill them in."`
+The hook context will contain a string beginning with `"mm.toml is missing settings:"` followed by a comma-separated list of setting names, for example:
 
-Walk through only the listed settings. For each, show the setting name and default value, and prompt for a value or press Enter to accept the default. Append the new settings to the existing `mm.toml` — do not rewrite the whole file; preserve all existing content.
+`"mm config: docs_root=".eng-docs", issue_tracker="github"\n\nmm.toml is missing settings: issue_tracker. Starting mm:init to fill them in."`
+
+Match on the prefix `"mm.toml is missing settings:"` and extract the setting names that follow (before the period) as the list to walk through.
+
+Walk through only the listed settings. For each, show the setting name and default value, and prompt for a value or press Enter to accept the default. Append the new settings to the existing `mm.toml` — do not rewrite the whole file; preserve all existing content. For each missing setting, prompt the user exactly as in direct invocation Step 2 (show current value as `(not set)` and the default). After all missing settings are collected, append them as new lines at the end of the file and commit without showing a full-file preview — only the new lines are being added.
 
 After writing, say:
 ```
