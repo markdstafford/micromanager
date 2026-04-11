@@ -25,8 +25,9 @@ parse_toml_value() {
   { grep -E "^${key}\s*=" "$file" 2>/dev/null || true; } \
     | head -1 \
     | sed -E 's/^[^=]+=\s*//' \
-    | tr -d '"'"'" \
-    | tr -d '[:space:]'
+    | sed -E 's/#[^"]*$//' \
+    | sed -E "s/^['\"]//; s/['\"].*$//" \
+    | sed -E 's/^[[:space:]]+|[[:space:]]+$//'
 }
 
 if [ -z "$CONFIG_FILE" ]; then
@@ -49,8 +50,8 @@ grep -qE "^docs_root\s*=" "$CONFIG_FILE" || MISSING+=("docs_root")
 grep -qE "^issue_tracker\s*=" "$CONFIG_FILE" || MISSING+=("issue_tracker")
 
 if [ ${#MISSING[@]} -gt 0 ]; then
-  MISSING_LIST=$(IFS=", "; echo "${MISSING[*]}")
-  printf '{"additionalContext": "mm config: docs_root=\"%s\", issue_tracker=\"%s\"\n\nmm.toml is missing settings: %s. Starting mm:init to fill them in."}\n' \
+  MISSING_LIST=$(printf '%s, ' "${MISSING[@]}" | sed 's/, $//')
+  printf '{"additionalContext": "mm config: docs_root=\"%s\", issue_tracker=\"%s\"\\n\\nmm.toml is missing settings: %s. Starting mm:init to fill them in."}\n' \
     "$DOCS_ROOT" "$ISSUE_TRACKER" "$MISSING_LIST"
   exit 0
 fi
