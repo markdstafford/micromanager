@@ -45,9 +45,11 @@ gh auth status
 ```
 If `gh` is not authenticated or not installed, stop and tell the user.
 
-mm config is resolved at session start by the mm hook and available in session context. The resolved values are:
+mm config is resolved at session start by the mm hook and available in session context:
 - `docs_root` — base directory for friction logs and spec paths
 - `issue_tracker` — issue tracking integration (`github` or `jira`)
+
+Additionally, read the following directly from config at session start:
 - `labels.type` — type label definitions (default: built-in taxonomy from `references/labels.md`)
 - `labels.priority` — priority label definitions (default: built-in taxonomy from `references/labels.md`)
 - `labels.meta` — meta label definitions (default: built-in taxonomy from `references/labels.md`)

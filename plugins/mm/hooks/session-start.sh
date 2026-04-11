@@ -56,7 +56,7 @@ if [ ${#MISSING[@]} -gt 0 ]; then
   exit 0
 fi
 
-# All settings present — inject resolved config, exit silently (no mm:init needed)
+# All settings present — inject resolved config values (no mm:init needed)
 printf '{"additionalContext": "mm config: docs_root=\"%s\", issue_tracker=\"%s\""}\n' \
   "$DOCS_ROOT" "$ISSUE_TRACKER"
 exit 0
