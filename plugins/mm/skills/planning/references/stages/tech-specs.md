@@ -35,11 +35,11 @@ Before starting, verify these exist. Follow the planning skill's prerequisite ch
 
 **For CRITICAL gaps** (no API style, no domain model, no database): STOP. Do not offer to "document assumptions and proceed." These decisions must be made first.
 
-## Pause gate
+## Approval gate
 
 Check `{waitForApprovalBefore}`. If it contains `tech`:
 
-1. Present a consolidated summary of all sections completed since the last pause gate (or since the session start if this is the first gate).
+1. Present a consolidated summary of all sections completed since the last approval gate (or since the session start if this is the first gate).
 2. Stop with: "Ready to begin the tech spec. Review the above and reply **continue** to proceed."
 3. Do not begin this stage until the human explicitly approves.
 

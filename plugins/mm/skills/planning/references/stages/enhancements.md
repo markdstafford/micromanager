@@ -45,7 +45,7 @@ Once the parent feature is confirmed, choose a short kebab-case name for the enh
 
 ### 2. What (1 paragraph)
 
-**Pause gate**: if `{waitForApprovalBefore}` includes `what`, treat this as a gate — present all sections completed since the last gate and wait for approval before drafting this section. If `{waitForApprovalBefore}` is absent or does not include `what`, draft this section and proceed.
+**Approval gate**: if `{waitForApprovalBefore}` includes `what`, treat this as a gate — present all sections completed since the last gate and wait for approval before drafting this section. If `{waitForApprovalBefore}` is absent or does not include `what`, draft this section and proceed.
 
 **Content**: What does this enhancement add to the existing feature? Describe the new behavior
 specifically. Do not describe the implementation.
@@ -59,7 +59,7 @@ specifically. Do not describe the implementation.
 
 ### 3. Why (1 paragraph)
 
-**Pause gate**: if `{waitForApprovalBefore}` includes `why`, treat this as a gate — present all sections completed since the last gate and wait for approval before drafting this section. If `{waitForApprovalBefore}` is absent or does not include `why`, draft this section and proceed.
+**Approval gate**: if `{waitForApprovalBefore}` includes `why`, treat this as a gate — present all sections completed since the last gate and wait for approval before drafting this section. If `{waitForApprovalBefore}` is absent or does not include `why`, draft this section and proceed.
 
 **Content**: Why does this improvement matter? What gap does it fill? What does it unblock?
 
@@ -70,7 +70,7 @@ specifically. Do not describe the implementation.
 
 ### 4. User stories
 
-**Pause gate**: if `{waitForApprovalBefore}` includes `userStories`, OR includes any of `personas`, `narratives`, or `goals` (which are not applicable to enhancements and map to this section as the next applicable section in the sequence), treat this as a gate — present all sections completed since the last gate and wait for approval before drafting this section. If `{waitForApprovalBefore}` is absent or none of these keys are present, draft this section and proceed.
+**Approval gate**: if `{waitForApprovalBefore}` includes `userStories`, OR includes any of `personas`, `narratives`, or `goals` (which are not applicable to enhancements and map to this section as the next applicable section in the sequence), treat this as a gate — present all sections completed since the last gate and wait for approval before drafting this section. If `{waitForApprovalBefore}` is absent or none of these keys are present, draft this section and proceed.
 
 **Content**: "[Persona] can [new action]" statements for the new capability only.
 Do not repeat stories from the parent feature — only what's new.

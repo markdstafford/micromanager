@@ -102,15 +102,15 @@ Before starting design specs, tech specs, or any stage that builds on prior work
 4. Never write multiple sections at once
 5. If the human wants to skip ahead, remind them of the process; if they insist, note what was skipped
 
-### Pause gates
+### Approval gates
 
-If `{waitForApprovalBefore}` is set and non-empty, the workflow uses **batch mode** instead of per-section checkpoints. Between pause gates, draft each section in order — each section builds on the ones before it — and move to the next without stopping for human approval. At a pause gate:
+If `{waitForApprovalBefore}` is set and non-empty, the workflow uses **batch mode** instead of per-section checkpoints. Between approval gates, draft each section in order — each section builds on the ones before it — and move to the next without stopping for human approval. At an approval gate:
 
 1. Present all sections completed in the current batch as a single consolidated output.
 2. Stop with the message: "I've completed [section list]. Review above and reply **continue** to proceed to [next stage/section]."
 3. Do not proceed until the human explicitly approves.
 
-See the canonical key table in `enhancement-pause-before.md` for valid keys and what each pauses before. Unknown keys are silently ignored. Keys not applicable to the current workflow (e.g., `personas` in an enhancement spec) pause at the next applicable section in the workflow sequence.
+See the canonical key table in `enhancement-pause-before.md` for valid keys and what each pauses before. Unknown keys are silently ignored. Keys not applicable to the current workflow (e.g., `personas` in an enhancement spec) trigger an approval gate at the next applicable section in the workflow sequence.
 
 If `{waitForApprovalBefore}` is absent or `[]`, use the standard per-section checkpoints (existing behavior).
 

@@ -14,11 +14,11 @@ Creates a `## Task list` section within the feature artifact containing:
 - Acceptance criteria
 - Dependencies between tasks
 
-## Pause gate
+## Approval gate
 
 Check `{waitForApprovalBefore}`. If it contains `taskList`:
 
-1. Present a consolidated summary of all sections completed since the last pause gate (or since the session start if this is the first gate).
+1. Present a consolidated summary of all sections completed since the last approval gate (or since the session start if this is the first gate).
 2. Stop with: "Ready to begin task decomposition. Review the above and reply **continue** to proceed."
 3. Do not begin this stage until the human explicitly approves.
 
