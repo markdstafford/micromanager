@@ -156,11 +156,15 @@ Before starting any sections, create the feature spec file:
 
 ### 1. What (1-3 paragraphs)
 
+**Pause gate**: if `{waitForApprovalBefore}` includes `what`, treat this as a gate — present all sections completed since the last gate and wait for approval before drafting this section. If `{waitForApprovalBefore}` is absent or does not include `what`, draft this section and proceed.
+
 Same process as applications. Same anti-solutioning rules apply.
 
 **CHECKPOINT**: Get human approval before proceeding to Why
 
 ### 2. Why (1-2 paragraphs)
+
+**Pause gate**: if `{waitForApprovalBefore}` includes `why`, treat this as a gate — present all sections completed since the last gate and wait for approval before drafting this section. If `{waitForApprovalBefore}` is absent or does not include `why`, draft this section and proceed.
 
 Same process as applications. Same anti-solutioning rules apply.
 
@@ -168,11 +172,15 @@ Same process as applications. Same anti-solutioning rules apply.
 
 ### 3. Personas (subset from app)
 
+**Pause gate**: if `{waitForApprovalBefore}` includes `personas`, treat this as a gate — present all sections completed since the last gate and wait for approval before drafting this section. If `{waitForApprovalBefore}` is absent or does not include `personas`, draft this section and proceed.
+
 - Reference personas from app.md
 - Identify which ones use this feature (typically 1-3)
 - **CHECKPOINT**: Get human approval
 
 ### 4. Narratives
+
+**Pause gate**: if `{waitForApprovalBefore}` includes `narratives`, treat this as a gate — present all sections completed since the last gate and wait for approval before drafting this section. If `{waitForApprovalBefore}` is absent or does not include `narratives`, draft this section and proceed.
 
 - Ask human for 2-3 narrative titles or scenarios
 - Draft each narrative one at a time (2-3 paragraphs, ≤5 sentences per paragraph)
@@ -181,12 +189,16 @@ Same process as applications. Same anti-solutioning rules apply.
 
 ### 5. User stories
 
+**Pause gate**: if `{waitForApprovalBefore}` includes `userStories`, treat this as a gate — present all sections completed since the last gate and wait for approval before drafting this section. If `{waitForApprovalBefore}` is absent or does not include `userStories`, draft this section and proceed.
+
 - Review each narrative
 - Extract 5-10 "[persona] can..." statements per narrative
 - Present as bulleted lists grouped by narrative
 - **CHECKPOINT**: Get human approval
 
 ### 6. Goals and non-goals
+
+**Pause gate**: if `{waitForApprovalBefore}` includes `goals`, treat this as a gate — present all sections completed since the last gate and wait for approval before drafting this section. If `{waitForApprovalBefore}` is absent or does not include `goals`, draft this section and proceed.
 
 - Ask human about success metrics and what's out of scope
 - Draft 3-5 measurable goals with specific targets
