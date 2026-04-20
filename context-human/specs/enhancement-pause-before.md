@@ -157,4 +157,57 @@ Within the requirements stage documents (`product-requirements.md`, `enhancement
 ```
 ## Task list
 
-*(Added by task decomposition stage)*
+- [ ] **Story: Config and session-start hook**
+  - [x] **Task: Document waitForApprovalBefore in mm.toml**
+    - **Description**: Add commented example of `waitForApprovalBefore` field to `mm.toml`
+    - **Acceptance criteria**:
+      - [x] mm.toml contains comment block with valid keys and example syntax
+      - [x] Field is commented out (no active config change)
+    - **Dependencies**: None
+  - [x] **Task: Add array parsing to session-start.sh**
+    - **Description**: Add `parse_toml_array` helper and parse `waitForApprovalBefore`; inject into additionalContext
+    - **Acceptance criteria**:
+      - [x] Hook outputs `waitForApprovalBefore=[]` when field absent
+      - [x] Hook outputs `waitForApprovalBefore=["tech","taskList"]` when field present
+      - [x] All existing hook output paths include the new field
+    - **Dependencies**: None
+- [ ] **Story: SKILL.md Pause gates concept**
+  - [x] **Task: Add Pause gates section to SKILL.md**
+    - **Description**: Add `### Pause gates` subsection after `### Section-by-section checkpoints` in planning SKILL.md
+    - **Acceptance criteria**:
+      - [x] Section documents batch-mode behavior
+      - [x] References canonical key table
+      - [x] Documents no-config default (unchanged behavior)
+    - **Dependencies**: None
+- [ ] **Story: Stage documents — requirements**
+  - [x] **Task: Add inline pause gates to product-requirements.md**
+    - **Description**: Add pause gate blocks to all 6 feature sections (what, why, personas, narratives, userStories, goals)
+    - **Acceptance criteria**:
+      - [x] Each of the 6 sections has a Pause gate block
+      - [x] Each block specifies its canonical key
+    - **Dependencies**: Story: SKILL.md Pause gates concept
+  - [x] **Task: Add inline pause gates to enhancements.md**
+    - **Description**: Add pause gate blocks to What, Why, User stories sections; userStories block covers inapplicable keys
+    - **Acceptance criteria**:
+      - [x] What, Why, User stories sections each have a Pause gate block
+      - [x] userStories block documents inapplicable key (personas, narratives, goals) substitution
+    - **Dependencies**: Story: SKILL.md Pause gates concept
+- [ ] **Story: Stage documents — design, tech, task-decomposition**
+  - [x] **Task: Add Pause gate block to design-specs.md**
+    - **Description**: Add `## Pause gate` section before `## Process` with key `design`
+    - **Acceptance criteria**:
+      - [x] Pause gate section present with correct key
+      - [x] Positioned before Process section
+    - **Dependencies**: Story: SKILL.md Pause gates concept
+  - [x] **Task: Add Pause gate block to tech-specs.md**
+    - **Description**: Add `## Pause gate` section before `## Process` with key `tech`
+    - **Acceptance criteria**:
+      - [x] Pause gate section present with correct key
+      - [x] Positioned before Process section
+    - **Dependencies**: Story: SKILL.md Pause gates concept
+  - [x] **Task: Add Pause gate block to task-decomposition.md**
+    - **Description**: Add `## Pause gate` section before `## Process` with key `taskList`
+    - **Acceptance criteria**:
+      - [x] Pause gate section present with correct key
+      - [x] Positioned before Process section
+    - **Dependencies**: Story: SKILL.md Pause gates concept
