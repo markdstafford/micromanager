@@ -86,7 +86,7 @@ When `waitForApprovalBefore` contains one or more keys, the workflow operates in
 5. **Unknown or inapplicable keys** — Keys not in the canonical list are silently ignored. Keys not applicable to the current workflow type trigger a pause at the next applicable section in the sequence instead.
 ### Affected files
 
-- `mm.toml` (project config) — add `waitForApprovalBefore` optional array field
+- `mm.toml` / `mm.yaml` / `mm.json` (project config) — add `waitForApprovalBefore` optional array field
 - `plugins/mm/hooks/session-start.sh` — parse `waitForApprovalBefore` array and inject into session context as `{waitForApprovalBefore}`
 - `plugins/mm/skills/planning/SKILL.md` — add **Approval gates** section documenting the model, canonical key table, and batch processing behavior; instruct the AI to check `{waitForApprovalBefore}` at every stage transition
 - `plugins/mm/skills/planning/references/stages/product-requirements.md` — add autonomous-batch behavior when `{waitForApprovalBefore}` is set; add inline approval gate check at each section: `what`, `why`, `personas`, `narratives`, `userStories`, `goals`
@@ -96,29 +96,49 @@ When `waitForApprovalBefore` contains one or more keys, the workflow operates in
 - `plugins/mm/skills/planning/references/stages/task-decomposition.md` — add approval gate check for key `taskList` at stage entry
 ### Changes
 
-#### Config schema — `mm.toml`
+#### Config schema
 
-Add one new optional field:
+Add one new optional field to whichever config format the project uses:
+
+TOML (`mm.toml`):
 ```toml
 # Optional: pause for explicit approval before these sections/stages.
-
 # Valid keys: what, why, personas, narratives, userStories, goals,
-
 #             design, tech, taskList
-
 waitForApprovalBefore = ["tech", "taskList"]
 ```
+
+YAML (`mm.yaml`):
+```yaml
+# Optional: pause for explicit approval before these sections/stages.
+waitForApprovalBefore:
+  - tech
+  - taskList
+# or inline: waitForApprovalBefore: [tech, taskList]
+```
+
+JSON (`mm.json`):
+```json
+{
+  "waitForApprovalBefore": ["tech", "taskList"]
+}
+```
+
 Default when absent: `[]` (no approval gates; existing per-section checkpoint behavior applies).
 #### `session-start.sh`
 
-The hook already parses `mm.toml` and injects `docs_root` and `issue_tracker`. Extend it to:
-1. Parse `waitForApprovalBefore` as an array of strings. TOML array syntax: `waitForApprovalBefore = ["tech", "taskList"]`. Default to empty array if key absent.
+The hook already parses config from `mm.toml`, `mm.yaml`, or `mm.json` and injects `docs_root` and `issue_tracker`. Extend it to:
+1. Parse `waitForApprovalBefore` as an array of strings from whichever config format is present. Supported syntaxes:
+   - TOML: `waitForApprovalBefore = ["tech", "taskList"]` (inline array)
+   - YAML: inline `waitForApprovalBefore: [tech, taskList]` or block style (each value on its own `- value` line)
+   - JSON: `"waitForApprovalBefore": ["tech", "taskList"]`
+   Default to empty array if key absent.
 2. Serialize the parsed array into the injected `additionalContext` string alongside existing config values, e.g.:
 	```javascript
 mm config: docs_root=".eng-docs", issue_tracker="github", waitForApprovalBefore=["tech","taskList"]
 	```
-3. Warn (but do not error) on unrecognized keys. No validation is required at parse time beyond extracting the string values.
-TOML array parsing in bash requires careful handling. A regex-based approach extracts the bracketed value and splits on commas. The existing `parse_toml_value` helper handles scalar values only and must be extended or supplemented for array parsing.
+3. No validation is required at parse time beyond extracting the string values.
+The existing `parse_toml_value` helper handles scalar values only and must be supplemented with a `parse_config_array` function that detects inline bracket syntax (works for TOML, YAML flow, and JSON) and falls back to YAML block-style parsing.
 #### `plugins/mm/skills/planning/SKILL.md` — new **Approval gates** section
 
 Add after the existing **Section-by-section checkpoints** shared concept:
