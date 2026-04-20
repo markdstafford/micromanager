@@ -1,2 +1,7 @@
 docs_root = ".eng-docs"
 issue_tracker = "github"
+
+# Optional: pause for explicit approval before these sections/stages.
+# Valid keys: what, why, personas, narratives, userStories, goals,
+#             design, tech, taskList
+# waitForApprovalBefore = ["tech", "taskList"]
