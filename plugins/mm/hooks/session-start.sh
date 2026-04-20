@@ -35,15 +35,16 @@ parse_toml_array() {
   local key="$1"
   local file="$2"
   local line
-  line=$(grep -E "^${key}\s*=" "$file" 2>/dev/null | head -1 || true)
+  line=$({ grep -E "^${key}\s*=" "$file" 2>/dev/null || true; } | head -1)
   if [ -z "$line" ]; then
     echo "[]"
     return
   fi
-  # Extract everything after the = sign, strip leading/trailing whitespace and tabs
-  local val
-  val=$(printf '%s' "$line" | sed -E 's/^[^=]+=[ \t]*//' | sed -E 's/[ \t]+$//')
-  echo "$val" | sed -E 's/,[ \t]+/,/g'
+  # Extract everything after '=', strip inline comment, then all whitespace
+  echo "$line" \
+    | sed -E 's/^[^=]+=\s*//' \
+    | sed -E 's/#[^"]*$//' \
+    | tr -d ' \t'
 }
 
 if [ -z "$CONFIG_FILE" ]; then
