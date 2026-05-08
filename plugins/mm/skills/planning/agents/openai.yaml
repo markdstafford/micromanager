@@ -1,0 +1,4 @@
+interface:
+  display_name: "mm planning"
+  short_description: "Plan features into durable artifacts"
+  default_prompt: "Use $planning to turn this feature idea into requirements, specs, and tasks."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "mm friction-log"
+  short_description: "Capture live workflow friction"
+  default_prompt: "Use $friction-log to capture friction from this workflow session."

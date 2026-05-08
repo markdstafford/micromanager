@@ -1,0 +1,39 @@
+{
+  "name": "mm",
+  "version": "2.2.0",
+  "description": "Software development planning workflow. Guides requirements, ADRs, design specs, tech specs, and task decomposition through a structured, collaborative process.",
+  "author": {
+    "name": "Mark Stafford"
+  },
+  "homepage": "https://github.com/markdstafford/micromanager",
+  "repository": "https://github.com/markdstafford/micromanager",
+  "keywords": [
+    "planning",
+    "requirements",
+    "specs",
+    "adrs",
+    "issue-triage",
+    "friction-log",
+    "software-development"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "micromanager",
+    "shortDescription": "Structured planning workflows for software work",
+    "longDescription": "micromanager guides software work from requirements through ADRs, design specs, technical specs, and task decomposition, while keeping decisions in durable repository artifacts.",
+    "developerName": "Mark Stafford",
+    "category": "Coding",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use mm planning to turn this feature idea into specs and tasks.",
+      "Use mm issue-triage to classify open GitHub issues.",
+      "Use mm friction-log to capture workflow feedback."
+    ],
+    "websiteURL": "https://github.com/markdstafford/micromanager",
+    "brandColor": "#2563EB"
+  }
+}

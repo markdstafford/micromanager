@@ -1,0 +1,4 @@
+interface:
+  display_name: "mm update-specs"
+  short_description: "Verify detail specs against code"
+  default_prompt: "Use $update-specs to verify active specs against the codebase."

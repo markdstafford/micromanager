@@ -1,0 +1,4 @@
+interface:
+  display_name: "mm update-spec"
+  short_description: "Sync the top-level project spec"
+  default_prompt: "Use $update-spec to refresh spec.md from active specs and ADRs."
