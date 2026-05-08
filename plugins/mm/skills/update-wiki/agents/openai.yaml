@@ -1,0 +1,4 @@
+interface:
+  display_name: "mm update-wiki"
+  short_description: "Refresh wiki docs from code"
+  default_prompt: "Use $update-wiki to refresh wiki documents from the current codebase."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "mm issue-triage"
+  short_description: "Classify and enrich tracked issues"
+  default_prompt: "Use $issue-triage to triage open issues or turn feedback into GitHub issues."

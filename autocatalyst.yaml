@@ -1,0 +1,79 @@
+workspace:
+  root: ~/.autocatalyst/workspaces/micromanager
+ai:
+  credentials:
+    - name: bedrock
+      type: iam
+      aws_profile: ai-prod-llm
+    - name: grove
+      type: api_key
+      value: ${AC_GROVE_API_KEY}
+  endpoints:
+    - name: grove-anthropic
+      protocol: anthropic
+      base_url: https://grove-gateway-prod.azure-api.net/grove-foundry-prod/anthropic
+      credential: grove
+    - name: grove-openai
+      protocol: openai
+      base_url: https://grove-gateway-prod.azure-api.net/grove-foundry-prod/openai/v1
+      credential: grove
+  profiles:
+    - name: grove-haiku-4.5-low
+      endpoint: grove-anthropic
+      model: claude-haiku-4-5
+      runner: anthropic_direct
+      anthropic:
+        effort: low
+    - name: grove-sonnet-4.6-medium
+      endpoint: grove-anthropic
+      model: claude-sonnet-4-6
+      runner: claude_agent_sdk
+      anthropic:
+        effort: medium
+        thinking: adaptive
+    - name: grove-sonnet-4.6-high
+      endpoint: grove-anthropic
+      model: claude-sonnet-4-6
+      runner: claude_agent_sdk
+      anthropic:
+        effort: high
+        thinking: adaptive
+    - name: grove-sonnet-4.6-low
+      endpoint: grove-anthropic
+      model: claude-sonnet-4-6
+      runner: claude_agent_sdk
+      anthropic:
+        effort: low
+        thinking: adaptive
+  routing:
+    intent.classify: grove-haiku-4.5-low
+    pr.title_generate: grove-haiku-4.5-low
+    artifact.create: grove-sonnet-4.6-high
+    artifact.revise: grove-sonnet-4.6-high
+    implementation.run: grove-sonnet-4.6-medium
+    question.answer: grove-sonnet-4.6-low
+    issue.triage: grove-sonnet-4.6-high
+telemetry:
+  metrics_endpoint: http://localhost:8428/opentelemetry/v1/metrics
+  logs_endpoint: http://localhost:9428/insert/opentelemetry/v1/logs
+  export_interval_ms: 30000
+polling:
+  interval_ms: 30000
+channels:
+  - provider: slack
+    name: ac-micromanager
+    config:
+      bot_token: ${AC_SLACK_BOT_TOKEN}
+      app_token: ${AC_SLACK_APP_TOKEN}
+      user_token: ${AC_SLACK_USER_TOKEN}
+      reacjis:
+        ack: eyes
+publishers:
+  - provider: notion
+    artifacts:
+      - artifact
+      - implementation_feedback
+    config:
+      integration_token: ${AC_NOTION_INTEGRATION_TOKEN}
+      specs_database_id: 09be47fc-74c3-42f0-b85a-fb5bdf7ed6c4
+      testing_guides_database_id: 59def47e-1412-4c6c-b747-8302f2ae07a5

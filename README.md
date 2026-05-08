@@ -40,14 +40,10 @@ The `mm:` skills will be available immediately in any project.
 
 **Codex**
 
-Codex does not load Claude plugins directly. Install the underlying skills into `~/.codex/skills`, then restart Codex:
+In Codex, add this repository as a plugin marketplace source:
 
-```bash
-mkdir -p ~/.codex/skills
-ln -s ~/git/coding-agent-flow/plugins/mm/skills/planning ~/.codex/skills/planning
-ln -s ~/git/coding-agent-flow/plugins/mm/skills/issue-triage ~/.codex/skills/issue-triage
-ln -s ~/git/coding-agent-flow/plugins/mm/skills/friction-log ~/.codex/skills/friction-log
-ln -s ~/git/coding-agent-flow/plugins/mm/skills/writing-guidelines ~/.codex/skills/writing-guidelines
+```
+https://github.com/markdstafford/micromanager
 ```
 
-After restarting Codex, invoke `planning`, `issue-triage`, `friction-log`, or `writing-guidelines` directly.
+The `mm` plugin includes Codex metadata and exposes the same skills through the plugin.

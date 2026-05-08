@@ -1,0 +1,4 @@
+interface:
+  display_name: "mm init"
+  short_description: "Set up mm project configuration"
+  default_prompt: "Use $init to set up or update mm configuration for this project."

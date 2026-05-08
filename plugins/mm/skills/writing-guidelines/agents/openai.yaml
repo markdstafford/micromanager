@@ -1,0 +1,4 @@
+interface:
+  display_name: "mm writing-guidelines"
+  short_description: "Write clear planning artifacts"
+  default_prompt: "Use $writing-guidelines to review this planning artifact for clarity and tone."
