@@ -28,6 +28,11 @@ A structured, collaborative process for planning software development work — f
 - **DO use** — for both large and small features (scale the process to fit)
 - **DON'T use the full planning process** — for bug fixes. Use the abbreviated bug workflow in `references/stages/bug-triage.md` instead, which produces a GitHub issue with root cause analysis and a task list.
 - **DON'T use feature requirements** — for improvements to an existing feature; use the enhancement stage instead
+- **DON'T use planning** — for several related features that share architecture and are best planned as a group. Use `mm:roadmapping` instead (see Routing to roadmapping below), then return here per feature.
+
+### Routing to roadmapping
+
+`mm:planning` is scoped to a single feature or enhancement. If, while scoping the work, you find it is really several features that share infrastructure — where planning them together would change the architecture versus planning each alone — stop and route to `mm:roadmapping`. Roadmapping plans the group at an inflection point and files a sequenced backlog of issues; each issue then comes back here for single-feature planning if it is non-trivial.
 
 ## Process overview
 
