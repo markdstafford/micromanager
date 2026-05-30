@@ -1,0 +1,4 @@
+interface:
+  display_name: "mm prototyping"
+  short_description: "Compare design options through ordered experiments"
+  default_prompt: "Use $prototyping to compare a few approaches to this design question."
