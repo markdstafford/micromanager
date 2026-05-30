@@ -1,6 +1,6 @@
 {
   "name": "mm",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Software development planning workflow. Guides requirements, ADRs, design specs, tech specs, and task decomposition through a structured, collaborative process.",
   "author": {
     "name": "Mark Stafford"
@@ -9,6 +9,8 @@
   "repository": "https://github.com/markdstafford/micromanager",
   "keywords": [
     "planning",
+    "roadmapping",
+    "prototyping",
     "requirements",
     "specs",
     "adrs",
@@ -30,6 +32,8 @@
     ],
     "defaultPrompt": [
       "Use mm planning to turn this feature idea into specs and tasks.",
+      "Use mm roadmapping to plan the next several features as a group.",
+      "Use mm prototyping to compare a few approaches to a design question.",
       "Use mm issue-triage to classify open GitHub issues.",
       "Use mm friction-log to capture workflow feedback."
     ],
