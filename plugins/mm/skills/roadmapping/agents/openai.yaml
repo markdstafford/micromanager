@@ -1,0 +1,4 @@
+interface:
+  display_name: "mm roadmapping"
+  short_description: "Plan a feature set at an inflection point"
+  default_prompt: "Use $roadmapping to plan the next several features as a group."
