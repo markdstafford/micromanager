@@ -20,6 +20,10 @@ The skill routes you through design, then a technical spec, then a task list bro
 
 **`mm:planning`** — guides you from a vague idea to an approved task list. Covers requirements, ADRs, design specs, tech specs, and task decomposition, with a checkpoint at every stage.
 
+**`mm:roadmapping`** — plans several related features as a group at a natural inflection point, rather than one at a time. Produces durable architectural docs plus a sequenced backlog of issues, then hands each issue off to `mm:planning`. Use it when planning the next few features together would produce a better architecture than planning each alone.
+
+**`mm:prototyping`** — answers a design question by comparison. Sets up ordered experiments, builds a few variants per experiment that differ on one axis, and folds each winner into the baseline before the next. Works for UI, UX, CLI, API, architecture, and data-model decisions. Composes with `mm:roadmapping` or runs standalone.
+
 **`mm:issue-triage`** — takes raw feedback or a friction log, enriches each item with code context, and writes GitHub issues. Classifies by type and priority; routes bugs and features into the planning workflow.
 
 **`mm:friction-log`** — captures live usability observations during a testing session. Invoke it mid-walkthrough to log what you're seeing without breaking your flow. Feed the log to `mm:issue-triage` when you're done.
