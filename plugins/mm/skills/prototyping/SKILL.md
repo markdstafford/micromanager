@@ -130,7 +130,7 @@ point, not a script. Choose one and say which and why:
 - **Add** an axis the last experiment surfaced.
 - **Stop early** — sometimes the design is settled before the plan is exhausted.
 
-State it plainly: *"Locked in B. That settles the row layout but raises a density
+State it plainly: *"Locked in 2. That settles the row layout but raises a density
 question I didn't plan — want to run that next, or move to the empty state as planned?"*
 
 ### 6. Watch for meta-lessons
