@@ -43,7 +43,7 @@ against the real system.
   default, with details in a dismissable modal or equivalent surface. Variant components
   live in a dedicated throwaway directory and import only existing tokens and shared
   primitives.
-- **CLI** — a hidden subcommand or explicit flag that opens the active lab directly,
+- **CLI** — a dev-only subcommand or explicit flag that opens the active lab directly,
   plus `1..N` selector values when interactive switching is available. Check existing
   flags, subcommands, shell aliases documented by the project, and common terminal
   control keys before choosing selectors. Show variant labels as `1 — <name>` in help
