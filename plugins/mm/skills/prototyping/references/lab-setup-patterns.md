@@ -9,8 +9,29 @@ against the real system.
 - **Inside the real system.** Variants should run against the same tokens, styles, data
   shapes, and platform mechanics that production uses, so comparisons are honest. A
   variant that lies about the real environment produces a decision you cannot trust.
-- **Quick toggle.** Switching between variants must be fast — a keypress or a flag, not a
-  rebuild. Slow switching kills comparison.
+- **Active labs open directly.** During an active prototyping session, launch into the
+  experiment by default. The shortcut or affordance is the escape hatch back to the
+  normal app, not the only way into the lab. If the host cannot safely open directly
+  into a lab, make the entry point explicit in the launch command, URL, or first visible
+  instruction so the human never has to remember an undocumented shortcut.
+- **Chrome recedes.** Lab controls must be discoverable but unobtrusive. Put persistent
+  controls in a consistent recessed location by default, such as the upper-right for
+  visual surfaces, and keep them out of the experiment's visual hierarchy. The controls
+  should read as lab furniture, not as part of the variant under test.
+- **Framing is dismissable.** Put the experiment title, axis, per-variant explanations,
+  why each variant was chosen, and pros/tradeoffs in a modal, popover, side panel, or
+  equivalent dismissable surface with enough room. Do not use a persistent header band
+  that competes visually with the experiment.
+- **Shortcuts are stable and checked.** Use `1..N` as the default variant-switch
+  convention. Before binding keys, inspect the host app's documented shortcuts,
+  obvious browser/OS shortcuts, and existing lab or development shortcuts; ask the
+  human when collisions are unclear. For CLI, API, architecture, and data-model labs,
+  map this check to existing flags, routes, headers, config keys, scripts, or command
+  names before choosing the lab selector.
+- **Visible identity matches the gesture.** If the key, flag, route, or config value is
+  `1`, the visible variant label starts with `1`. Do not label the same variant as `A`
+  in one place and `1` somewhere else. Pair the stable selector with a descriptive name,
+  such as `1 — attached titlebar`.
 - **Clearly throwaway.** Variants live in a clearly-named location that is obviously not
   production, so they are easy to find and delete later.
 
