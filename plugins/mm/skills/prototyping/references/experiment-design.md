@@ -43,7 +43,10 @@ can reorder once a winner changes what matters.
   genuinely wider. More than five means the axis is too broad — split it or run a second
   round to narrow first.
 - **Name each variant** for what makes it distinct ("attached titlebar", "footer
-  toggle"), not "A/B/C" alone. The name is how the decision gets remembered.
+  toggle"), and pair that name with the lab selector. If the selector is `1`, write the
+  visible identity as `1 — attached titlebar`. The name is how the decision gets
+  remembered, but the selector is how the human switches; do not create a second visible
+  identity such as `A` for the same variant.
 
 ## When an experiment produces no winner
 
