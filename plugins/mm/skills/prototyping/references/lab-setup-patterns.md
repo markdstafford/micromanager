@@ -37,27 +37,38 @@ against the real system.
 
 ## Patterns by surface
 
-- **Web / desktop UI** — a dev-only route or view, gated by a query flag or env var.
-  Numeric keys switch variants. Variant components live in a dedicated throwaway
-  directory and import only existing tokens and shared primitives.
-- **CLI** — a hidden subcommand or a flag that selects the variant behavior. Each variant
-  is a separate handler behind the selector.
-- **API / service** — a variant route or a header/flag that selects the implementation.
-  Each variant is isolated behind the selector so none leaks into the real routes.
+- **Web / desktop UI** — a dev-only route, view, query flag, or env var that opens the
+  active lab directly while the session is running. Use `1..N` to switch variants after
+  checking host shortcuts. Keep persistent controls recessed in the upper-right by
+  default, with details in a dismissable modal or equivalent surface. Variant components
+  live in a dedicated throwaway directory and import only existing tokens and shared
+  primitives.
+- **CLI** — a hidden subcommand or explicit flag that opens the active lab directly,
+  plus `1..N` selector values when interactive switching is available. Check existing
+  flags, subcommands, shell aliases documented by the project, and common terminal
+  control keys before choosing selectors. Show variant labels as `1 — <name>` in help
+  text and prompts.
+- **API / service** — a variant route, header, query parameter, or config value that
+  selects the implementation. Check existing route, header, query, and config names
+  before choosing selectors. Expose labels as `1 — <name>` in logs, response metadata,
+  or the run sheet so the selector and visible identity match.
 - **Architecture / data model** — a small spike that exercises each variant against
-  realistic data, with the variant selected by config. The goal is to feel the tradeoff,
-  not to ship the spike.
+  realistic data, with the variant selected by config, script argument, or fixture name.
+  Check existing config keys, scripts, and fixture names before choosing selectors. The
+  goal is to feel the tradeoff, not to ship the spike.
 
 ## Worked example — web UI lab
 
-A lab for comparing row layouts in a list view, gated by a query flag, variants switched
-by number keys:
+A lab for comparing row layouts in a list view. The active prototyping launch command or
+URL opens the lab directly, variants switch with checked `1..N` shortcuts, and lab
+chrome stays recessed while details live in a dismissable modal:
 
-```
+```text
 src/lab/                         # clearly-not-production; deleted at wrap-up
-  README.md                      # what this is, how to enter, that it's throwaway
-  Lab.tsx                        # reads ?lab=1, switches variant by number key 1..N
-  registry.ts                    # [{ id, name, Component }]
+  README.md                      # what this is, how to launch, that it's throwaway
+  Lab.tsx                        # active lab shell; 1..N keys switch variants
+  LabChrome.tsx                  # upper-right recessed controls + details modal
+  registry.ts                    # [{ shortcut, name, summary, tradeoffs, Component }]
   fixtures.ts                    # realistic fixture data, shaped like production
   variants/
     1-single-line.tsx
@@ -65,14 +76,56 @@ src/lab/                         # clearly-not-production; deleted at wrap-up
     3-card.tsx
 ```
 
-- `Lab.tsx` mounts only when the flag is present; the real app is untouched otherwise.
-- Each variant imports the real design tokens and shared primitives — no bespoke
-  styling — so what the human sees is what production will feel like.
+- Launch the active session directly into `Lab.tsx`. If safety requires a gate, make it
+  explicit in the command or URL, such as `npm run dev -- --lab=row-layout` or
+  `/orders?lab=row-layout`, instead of relying on a memorized hidden entry shortcut.
+- Before binding `1`, `2`, and `3`, check the host app's shortcut map and obvious
+  browser/OS collisions. If a collision exists, choose the nearest non-conflicting
+  selector and make the visible label match it.
+- `LabChrome.tsx` keeps persistent lab controls discoverable but unobtrusive in the
+  upper-right by default: current variant, compact switcher, details button, and exit
+  control. It should be visually recessed and must not look like part of any variant.
+- The details button opens a dismissable modal with the experiment title, axis, what is
+  held constant, each variant's explanation, why it was chosen, and pros/tradeoffs.
+- `registry.ts` owns the selector-visible identity so labels match shortcuts everywhere:
+
+```ts
+export const variants = [
+  {
+    shortcut: "1",
+    name: "single-line",
+    summary: "Keeps every row compact for fast scanning.",
+    tradeoffs: "Lowest height, but secondary metadata has less room.",
+    Component: SingleLineVariant,
+  },
+  {
+    shortcut: "2",
+    name: "two-line",
+    summary: "Gives title and metadata separate rows.",
+    tradeoffs: "More readable metadata, but fewer items fit above the fold.",
+    Component: TwoLineVariant,
+  },
+  {
+    shortcut: "3",
+    name: "card",
+    summary: "Groups row content in a larger card-like surface.",
+    tradeoffs: "Strong separation between records, but the list feels heavier.",
+    Component: CardVariant,
+  },
+];
+```
+
+- Present labels from the registry as `1 — single-line`, `2 — two-line`, and `3 — card`
+  in chrome, modal content, logs, and spoken/written instructions.
+- Each variant imports the real design tokens and shared primitives — no bespoke styling
+  — so what the human sees is what production will feel like.
 - One variant per file keeps them independent: deleting a loser touches nothing else.
 
-The same shape maps to other surfaces: a `--lab=2` flag selecting a CLI handler, a
-`?lab=2` route selecting a service implementation, a config key selecting a data-model
-spike.
+The same shape maps to other surfaces: a `--lab=row-layout --variant=2` flag selecting a
+CLI handler, a `?lab=row-layout&variant=2` route selecting a service implementation, or
+a config key selecting a data-model spike. In each case, the selector is checked for
+collisions, shown in the label, and documented as the direct entry path for the active
+session.
 
 ## Keep it honest and disposable
 
