@@ -1,14 +1,13 @@
 # Meta-lessons
 
-Some feedback in an experiment is not "I pick variant B." It is a signal that the
+Some feedback in an experiment is not "I pick 2." It is a signal that the
 experiment is framed wrong. These are the recurring patterns worth watching for. Each
 has a trigger, the reframe, and an example.
 
 ## Variants-as-values: the axis is one level deeper
 
 **Trigger.** You find yourself proposing a set of variants where each variant is one
-possible *value* on some dimension. Variant A sorts by date, variant B sorts by
-priority, variant C sorts by status.
+possible *value* on some dimension. 1 — sort by date, 2 — sort by priority, 3 — sort by status.
 
 **The reframe.** When the variants are just different values, the real design question is
 usually one level up: *how does the user choose the value, and where is that choice

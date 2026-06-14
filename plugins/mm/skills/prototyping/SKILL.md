@@ -70,10 +70,16 @@ alignment on where you are headed.
 
 ### 3. Set up the lab
 
-Build throwaway scaffolding inside the running system, reachable by a quick toggle — a
-keyboard shortcut, a route flag, an env var, whatever fits the project. Variants live in
-a clearly-named throwaway location so they are easy to find and delete later. See
-`references/lab-setup-patterns.md`.
+Build throwaway scaffolding inside the running system. During an active prototyping
+session, launch directly into the experiment by default; use the shortcut or control as
+the escape hatch back to the normal app, not as the only way into the lab. Variants live
+in a clearly-named throwaway location so they are easy to find and delete later. Lab
+chrome must be discoverable but unobtrusive, recessed in a consistent location by
+default, and separated from the experiment's visual hierarchy. Use stable selectors such
+as `1..N` for variant switching after checking host shortcut collisions, and make the
+visible variant label start with the same selector the human uses. Put experiment
+framing and per-variant explanations in a dismissable surface instead of persistent
+chrome. See `references/lab-setup-patterns.md`.
 
 ### 4. Run one experiment
 
@@ -96,16 +102,18 @@ For each experiment, loop:
 
 Present every experiment the same way so the human can compare quickly:
 
-```
+```text
 Experiment N: <axis> — <the tradeoff at stake>
 Holding constant: <what is the same across all variants>
 
-  A — <name>: <one line on what's different and why you'd pick it>
-  B — <name>: <one line>
-  C — <name>: <one line>
+  1 — <name>: <one line on what's different and why you'd pick it>
+  2 — <name>: <one line>
+  3 — <name>: <one line>
 
-How to see them: <toggle instructions — key, flag, route>
+How to see them: <direct launch path plus checked shortcuts/controls; labels match selectors>
 ```
+
+Use as many numbered entries as the experiment has variants, normally two to five; do not introduce a second identity such as `A/B/C` when the lab controls use numeric selectors.
 
 Then stop and let the human look. Do not recommend a winner unless asked — you propose
 the options; the human picks. If asked for your lean, give it with a one-line reason.
@@ -122,7 +130,7 @@ point, not a script. Choose one and say which and why:
 - **Add** an axis the last experiment surfaced.
 - **Stop early** — sometimes the design is settled before the plan is exhausted.
 
-State it plainly: *"Locked in B. That settles the row layout but raises a density
+State it plainly: *"Locked in 2. That settles the row layout but raises a density
 question I didn't plan — want to run that next, or move to the empty state as planned?"*
 
 ### 6. Watch for meta-lessons
