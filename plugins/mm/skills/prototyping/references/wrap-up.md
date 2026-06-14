@@ -54,7 +54,11 @@ Offer these destinations:
 - **c. Seed doc** — write the decision summary to
   `{docs_root}/notes/<experiment-name>/decisions.md` only for lightweight or working
   material. This can feed a later `mm:planning` or `mm:roadmapping` session, but it is
-  not the durable home for substantial decisions.
+  not the durable home for substantial decisions. Before writing here, check that
+  `{docs_root}/notes/` is listed in `.gitignore`. If it is not, add it and tell the
+  human: *"Added `{docs_root}/notes/` to `.gitignore` — seed notes stay local; use
+  `concepts/` for committed decisions."* If the human prefers not to modify `.gitignore`,
+  use `concepts/` or an issue instead.
 - **d. Issue body** — create a new issue, or update an existing one, with the decisions.
 - **e. Just exit** — leave the summary in chat only when the human explicitly wants no
   artifact.
