@@ -52,11 +52,20 @@ Before planning experiments, establish what you are exploring:
   feature (standalone)?
 - Read the relevant repository docs first — the design system, related features, any
   existing contracts the design must fit.
+- State the decision outcome in one or two sentences: what settling this decision
+  unlocks for the project or the feature set.
+- State the target altitude, such as field list, layout, mechanism, architecture, data
+  model, workflow, or feature-set shape.
+- Ask the human to confirm or correct the outcome and altitude before listing axes. If
+  they correct it, adjust your context before moving to step 2.
 
-Only once the context is clear should you plan experiments. A prototype that ignores the
-existing design system or an adjacent feature's contract wastes a round. Say what
-constraints you found: *"The design system fixes the accent color and the sidebar width,
-so those are constant across all variants — we're only varying the row layout."*
+Only once the context, outcome, and altitude are clear should you plan experiments. A
+prototype that ignores the existing design system, an adjacent feature's contract, or the
+actual level of the decision wastes a round. Say what constraints you found and what
+altitude you think the decision targets: *"The design system fixes the accent color and
+the sidebar width, so those are constant across all variants. Settling this unlocks the
+source-selection workflow, and I think the target altitude is workflow shape rather than
+row styling. Is that right?"*
 
 ### 2. Plan the experiments
 

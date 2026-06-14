@@ -1,6 +1,6 @@
 # Cleanup
 
-The lab is throwaway. Once the decisions are captured (see `wrap-up.md`), remove it.
+The lab is throwaway. Once the decisions and follow-ups are captured in the destination chosen during wrap-up (see `wrap-up.md`), remove it.
 
 ## What to delete
 
@@ -12,7 +12,9 @@ The lab is throwaway. Once the decisions are captured (see `wrap-up.md`), remove
 
 ## What to preserve
 
-- The decision summary, in whatever destination the wrap-up step chose.
+- The decision summary or durable concept docs, in whatever destination the wrap-up step
+  chose.
+- Human-owned follow-ups, in the durable artifact or issue the wrap-up step chose.
 - Anything the human explicitly asks to promote toward production. Promote it
   deliberately — rewrite or cherry-pick it into the real code on a proper branch, rather
   than leaving lab-shaped code behind. Lab code carries throwaway assumptions that should
@@ -26,5 +28,4 @@ The lab is throwaway. Once the decisions are captured (see `wrap-up.md`), remove
 3. Delete, and confirm the lab no longer activates (the toggle is gone, the system runs
    as it did before the lab).
 
-A clean exit leaves the system exactly as it was before the lab, plus the captured
-decisions.
+A clean exit leaves the system exactly as it was before the lab, plus the captured decisions and any human-owned follow-ups.
