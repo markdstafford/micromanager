@@ -39,10 +39,34 @@ parent skill. Roadmapping folds the decisions into its durable `concepts/` docs.
 write your own output doc and do not ask the human where decisions go — the parent owns
 that.
 
-**If standalone:** ask the human where the decisions should land. For a substantial
-session, recommend detailed concept docs in `{docs_root}/concepts/` unless the human
-chooses another durable destination. Use `notes/` for throwaway seed material, not for
-durable decisions.
+**If standalone:** first check whether the lock-ins describe one feature or a feature set
+with multiple implementation slices. Use this tripwire when the session settled several
+related decisions whose implementation has dependencies, parallel tracks, or foundations
+that other slices build on. Say the classification plainly: *"This prototype settled a
+feature set, not just one feature, because the source contract must land before the
+normalization and sync slices can proceed."*
+
+If the output is feature-set-sized and the framing is not complete enough to hand off —
+contracts are not drafted, slice boundaries are unnamed, or dependencies are unclear —
+route to `mm:roadmapping` and hand it the lock-in summary, open/deferred items, and any
+constraints discovered in the lab. If the framing is already complete — contracts
+drafted, slices named, dependencies identified — propose a dependency-ordered issue set
+using the sequencing logic in
+`plugins/mm/skills/roadmapping/references/issue-sequencing.md`: foundations first,
+dependents after, cross-links for dependencies, parallelizable work called out. Adapt the
+sequencing logic to the standalone context; do not assume the roadmapping session-prep
+file tree exists. Ask whether to file those issues using the configured issue tracker: *"I
+can file these as implementation issues in order. Want me to do that, leave them as a
+draft, or adjust the sequencing first?"* If the tracker is Jira or another unsupported
+provider, do not promise GitHub issue creation; provide the ordered issue bodies for the
+human or tracker-specific workflow instead. In Autocatalyst-managed runs, do not create
+worktrees, switch branches, push, merge, or open PRs; branch and PR management belongs to
+Autocatalyst.
+
+If the standalone output is one feature, or the human declines issue sequencing, ask where
+the decisions should land. For a substantial session, recommend detailed concept docs in
+`{docs_root}/concepts/` unless the human chooses another durable destination. Use
+`notes/` for throwaway seed material, not for durable decisions.
 
 Offer these destinations:
 
@@ -86,8 +110,9 @@ Read an existing concept doc or repository exemplar first, then match its depth 
 voice. Detailed concept docs are the deliverable for substantial standalone sessions, not
 a thin decision summary. Durable docs should describe the contract: boundaries,
 invariants, structure, relationships, constraints, and non-obvious decisions with their
-reasons. Do not copy roadmapping's issue-sequencing behavior into prototyping unless the
-human asks for issues.
+reasons. Do not copy the full roadmapping workflow into prototyping. Only use roadmapping's
+issue-sequencing reference when the standalone feature-set tripwire above fires and the
+settled framing is complete enough to propose implementation issues safely.
 
 Use this doc-plan shape:
 
