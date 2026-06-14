@@ -4,6 +4,18 @@ An experiment is one axis with a few variants. The quality of a prototyping sess
 mostly decided here: a well-chosen axis produces a clean decision, a muddy axis produces
 variants the human cannot compare.
 
+## Confirm the level of the question first
+
+A plan can be internally coherent and still answer the wrong question. Before choosing
+axes, confirm the outcome and altitude with the human: what settling the decision
+unlocks, and whether the target is a field list, layout, mechanism, architecture, data
+model, workflow, feature-set shape, or another level.
+
+If the target is one level higher than you first assumed, redesign the axes around the
+higher-level decision instead of optimizing the narrower question. This check prevents
+choosing the wrong set of axes. The shallow-axis warning below is different: it helps you
+recover when one specific axis is too narrow after the session is already underway.
+
 ## Choosing axes
 
 An axis is a single dimension of the design that has several plausible settings. Good
