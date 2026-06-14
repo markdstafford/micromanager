@@ -79,16 +79,26 @@ alignment on where you are headed.
 
 ### 3. Set up the lab
 
-Build throwaway scaffolding inside the running system. During an active prototyping
-session, launch directly into the experiment by default; use the shortcut or control as
-the escape hatch back to the normal app, not as the only way into the lab. Variants live
-in a clearly-named throwaway location so they are easy to find and delete later. Lab
-chrome must be discoverable but unobtrusive, recessed in a consistent location by
-default, and separated from the experiment's visual hierarchy. Use stable selectors such
-as `1..N` for variant switching after checking host shortcut collisions, and make the
-visible variant label start with the same selector the human uses. Put experiment
-framing and per-variant explanations in a dismissable surface instead of persistent
-chrome. See `references/lab-setup-patterns.md`.
+Before writing any lab files, isolate the workspace. If the session is running in an
+Autocatalyst-managed workspace, the workspace is already isolated: do not create a
+worktree, switch branches, push, merge, or open a PR. If the session is not already
+isolated, use an available worktree skill or native worktree flow before creating lab
+files; if the repository has a different documented isolation convention, follow that
+convention and say what you are using. A branch in the same working directory is not
+sufficient isolation for throwaway lab files; untracked and temporary files dirty the
+user's active checkout regardless of which branch is checked out.
+
+Build throwaway scaffolding inside the running system only after that isolation preflight
+is complete. During an active prototyping session, launch directly into the experiment by
+default; use the shortcut or control as the escape hatch back to the normal app, not as
+the only way into the lab. Variants live in a clearly named throwaway location inside the
+isolated workspace so they are easy to find and delete later. Lab chrome must be
+discoverable but unobtrusive, recessed in a consistent location by default, and separated
+from the experiment's visual hierarchy. Use stable selectors such as `1..N` for variant
+switching after checking host shortcut collisions, and make the visible variant label
+start with the same selector the human uses. Put experiment framing and per-variant
+explanations in a dismissable surface instead of persistent chrome. See
+`references/lab-setup-patterns.md`.
 
 ### 4. Run one experiment
 

@@ -32,8 +32,12 @@ against the real system.
   `1`, the visible variant label starts with `1`. Do not label the same variant as `A`
   in one place and `1` somewhere else. Pair the stable selector with a descriptive name,
   such as `1 — attached titlebar`.
-- **Clearly throwaway.** Variants live in a clearly-named location that is obviously not
-  production, so they are easy to find and delete later.
+- **Clearly throwaway means isolated and disposable.** Variants live in an isolated
+  workspace first, then in a clearly named location inside that workspace that is
+  obviously not production. A directory such as `src/lab/` makes cleanup easy, but it is
+  not sufficient by itself if creating it would dirty the human's active checkout. Regardless, before
+  choosing paths, check repository conventions for existing `proto/`, `spike/`, lab, or
+  branch/workspace naming patterns and follow them when they exist.
 
 ## Patterns by surface
 
@@ -59,9 +63,11 @@ against the real system.
 
 ## Worked example — web UI lab
 
-A lab for comparing row layouts in a list view. The active prototyping launch command or
-URL opens the lab directly, variants switch with checked `1..N` shortcuts, and lab
-chrome stays recessed while details live in a dismissable modal:
+A lab for comparing row layouts in a list view. This `src/lab/` directory is inside the
+already isolated prototyping workspace; it is not a substitute for workspace isolation.
+The active prototyping launch command or URL opens the lab directly, variants switch with
+checked `1..N` shortcuts, and lab chrome stays recessed while details live in a
+dismissable modal:
 
 ```text
 src/lab/                         # clearly-not-production; deleted at wrap-up
@@ -129,8 +135,12 @@ session.
 
 ## Keep it honest and disposable
 
+- Confirm the workspace is isolated before the first lab write. In Autocatalyst-managed
+  runs, use the provided workspace and do not create another worktree or switch branches.
 - Use real fixture data shaped like production data.
 - Do not wire the lab into real persistence, routing, or side effects.
 - Keep each variant self-contained so it can be deleted without touching the others.
+- Keep the lab path easy to remove, such as `src/lab/`, `proto/<topic>/`, or the
+  repository's existing spike location, inside the isolated workspace.
 - Expect to delete all of it at wrap-up. Anything worth keeping is promoted deliberately,
   not left behind in the lab.
